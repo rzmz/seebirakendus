@@ -1,8 +1,7 @@
 Seebirakendus
 =============
 
-Mingi sissejuhatav tekst.
-
+Aine MTAT.03.230 Veebirakenduse loomine käigus loodav veebirakendus
 
 =============
 
