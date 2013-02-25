@@ -8,5 +8,5 @@ if (Meteor.isClient) {
       // template data, if any, is available in 'this'
       alert("You have successfully clicked the button!");
     }
-  });
+  });    
 }

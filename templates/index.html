@@ -1,9 +1,10 @@
 <head>
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>vali</title>
 </head>
 
 <body>
+  {{> menu}}
   {{> map}}
 </body>
 
@@ -15,4 +16,23 @@
 
 <template name="map">
 	<div id="map_canvas"></div>
+</template>
+
+<template name="menu">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Valimised</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#vaade" data-toggle="modal">Link</a></li>
+            <li><a href="#vaade" data-toggle="modal">Link</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li><a href="#">{{loginButtons}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{> vaade}}
 </template>
