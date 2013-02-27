@@ -1,15 +1,95 @@
 <template name="tulemused">
-  <div id="tulemused" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Tulemused</h3>
+
+  <div class="pull-right">
+    <div class="btn-group">
+      <button class="btn">Vali piirkond</button>
+      <button class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a tabindex="-1" href="#">Terve eesti</a></li>
+        <li><a tabindex="-1" href="#">Põlvamaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+      </ul>
     </div>
-    <div class="modal-body">
-      Body text
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Save changes</button>
+    <div class="btn-group">
+      <button class="btn">Erakonnad</button>
+      <button class="btn active">Kandidaadid</button>
     </div>
   </div>
+  
+  <div class="pull-left">
+    <div class="btn-group">
+      <button class="btn">Vali esitlusviis</button>
+      <button class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a tabindex="-1" href="#">Tabelkujul</a></li>
+        <li><a tabindex="-1" href="#">Veel mingi variant</a></li>
+        <li><a tabindex="-1" href="#">Kolmas variant ka, palun</a></li>
+      </ul>
+    </div>    
+  </div>
+  
+  <br /><br />
+
+  
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Piirkond</th>
+        <th>Erakond</th>
+        <th>Hääli</th>
+        <th>Mandaat</th>
+      </tr>      
+    </thead>
+    <tbody>
+      <tr>
+        <td>Karlsson Katuselt</td>
+        <td>Kohtla-Järve</td>
+        <td>Kodumaa Kollane</td>
+        <td>7</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Keegi kuskilt</td>
+        <td>Kohtla-Järve</td>
+        <td>Roheline Rohelus</td>
+        <td>9</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Ranno Rambo</td>
+        <td>Raplamaa</td>
+        <td>Roheline Rohelus</td>
+        <td>1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Tiina Tihemetsa</td>
+        <td>Tartumaa</td>
+        <td>Tuhat &amp; Tuline</td>
+        <td>23</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Valerie Liberty</td>
+        <td>Valgamaa</td>
+        <td>Vaprakesed</td>
+        <td>666</td>
+        <td><input type="checkbox" checked="checked" /></td>
+      </tr>
+    </tbody>
+  </table>
 </template>

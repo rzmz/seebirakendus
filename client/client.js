@@ -14,20 +14,24 @@ if (Meteor.isClient) {
     Template.page_controller.events = {
       'click ul.nav li a': function (event) {
             event.preventDefault();
-        	var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
-        	var pathname = reg.exec(event.currentTarget.href)[1];
+            // $(event.target).parent().parent().find('li').removeClass("active");
+            // $(event.target).parent().addClass("active");
+            var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
+            var pathname = reg.exec(event.currentTarget.href)[1];
             Router.navigate(pathname, true);
       }
     };
     
     Template.page_controller.display_page = function() {
+        
         var page_index = Session.get('page_id');
-        if (!page_index || !Template[page_index]) {
+
+        if (page_index != "" && !Template[page_index]) {
             page_index = 'four_oh_four';
+        } else if(page_index == "") {
+            page_index = "esileht"
         }
-        
-        // $('#').addClass('active');
-        
+
         return Template[page_index]();
     };
     
