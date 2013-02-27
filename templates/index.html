@@ -4,35 +4,43 @@
 </head>
 
 <body>
-  {{> menu}}
-  {{> map}}
+  <div class="container">
+    <div class="row">
+      <div class="span12" style="text-align: right;">
+        {{loginButtons}}
+      </div>
+    </div>
+    <div class="row"><div class="span1"><br /></div></div>
+    <div class="row">
+      <div class="span12">
+        {{> page_controller}}
+      </div>
+    </div>
+  </div>
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
-</template>
-
-<template name="map">
+<template name="kaart">
 	<div id="map_canvas"></div>
 </template>
 
+<template name="page_controller">
+  {{> menu}}
+  {{{display_page}}}
+</template>
+
 <template name="menu">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">Valimised</a>
-          <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#vaade" data-toggle="modal">Link</a></li>
-            <li><a href="#vaade" data-toggle="modal">Link</a></li>
-          </ul>
-          <ul class="nav pull-right">
-            <li><a href="#">{{loginButtons}}</a></li>
-          </ul>
-        </div>
+  <div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <ul class="nav">
+          <li><a href="/esileht">Esileht</a></li>
+          <li><a href="/tulemused">Tulemused</a></li>
+          <li><a href="/nimekirjad">Nimekirjad</a></li>
+          <li><a href="/kandidatuur">Kandidatuur</a></li>
+          <li><a href="/kaart">Kaart</a></li>
+        </ul>
+        <ul class="nav pull-right">
+        </ul>
       </div>
     </div>
-    {{> vaade}}
+  </div>  
 </template>

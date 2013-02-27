@@ -1,0 +1,72 @@
+<template name="nimekirjad">
+
+  <div class="input-append">
+    <form class="form-search">
+      <input class="span2" id="appendedInputButton" type="text">
+      <button class="btn" type="button">Otsi</button>
+    </form>
+  </div>
+
+  {{#if currentUser}}
+  <div class="alert alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4>Valitud kandidaat</h4>
+    Valitud kandidaat puudub. Enda hääle andmiseks kandidaadile klõpsa allpool olevas nimekirjas sobiva kandidaadi nime järel "HÄÄLETA".
+  </div>
+  {{/if}}
+  
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Piirkond</th>
+        <th>Erakond</th>
+        {{#if currentUser}}
+          <th>Hääletus</th>
+        {{/if}}
+      </tr>      
+    </thead>
+    <tbody>
+      <tr>
+        <td>Karlsson Katuselt</td>
+        <td>Kohtla-Järve</td>
+        <td>Kodumaa Kollane</td>
+        {{#if currentUser}}
+          <td><a href="#">Hääleta!</a></td>        
+        {{/if}}
+      </tr>
+      <tr>
+        <td>Keegi kuskilt</td>
+        <td>Kohtla-Järve</td>
+        <td>Roheline Rohelus</td>
+        {{#if currentUser}}
+          <td><a href="#">Hääleta!</a></td>        
+        {{/if}}
+      </tr>
+      <tr>
+        <td>Ranno Rambo</td>
+        <td>Raplamaa</td>
+        <td>Roheline Rohelus</td>
+        {{#if currentUser}}
+          <td><a href="#">Hääleta!</a></td>        
+        {{/if}}
+      </tr>
+      <tr>
+        <td>Tiina Tihemetsa</td>
+        <td>Tartumaa</td>
+        <td>Tuhat &amp; Tuline</td>
+        {{#if currentUser}}
+          <td><a href="#">Hääleta!</a></td>        
+        {{/if}}
+      </tr>
+      <tr>
+        <td>Valerie Liberty</td>
+        <td>Valgamaa</td>
+        <td>Vaprakesed</td>
+        {{#if currentUser}}
+          <td><a href="#">Hääleta!</a></td>        
+        {{/if}}
+      </tr>
+    </tbody>
+  </table>
+</template>

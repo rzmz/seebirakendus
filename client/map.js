@@ -19,5 +19,6 @@ var loadScript = function() {
 }
 
 $(document).ready(function() {
-	window.onload = loadScript;	
+    if(document.getElementById("map_canvas"))
+	    window.onload = loadScript;	
 });

@@ -1,12 +1,33 @@
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to vali.";
-  };
+    var myAppRouter = Backbone.Router.extend({
+        routes: {
+            "*path": "main"
+        },
+        main: function(url_path){
+            Session.set('page_id', url_path);
+        }
+    });
 
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      alert("You have successfully clicked the button!");
-    }
-  });    
+    Router = new myAppRouter();
+    Backbone.history.start({pushState: true});
+    
+    Template.page_controller.events = {
+      'click ul.nav li a': function (event) {
+            event.preventDefault();
+        	var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
+        	var pathname = reg.exec(event.currentTarget.href)[1];
+            Router.navigate(pathname, true);
+      }
+    };
+    
+    Template.page_controller.display_page = function() {
+        var page_index = Session.get('page_id');
+        if (!page_index || !Template[page_index]) {
+            page_index = 'four_oh_four';
+        }
+        
+        // $('#').addClass('active');
+        
+        return Template[page_index]();
+    };
 }
