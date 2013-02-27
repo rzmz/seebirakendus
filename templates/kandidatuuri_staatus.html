@@ -1,0 +1,54 @@
+<template name="kandidatuuri_staatus">
+  <div class="well">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Staatus</legend>
+        <div class="alert alert-info">
+          Sinu kandidatuuritaotlus on esitamata.
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Valimisringkond</label>
+            <div class="controls">
+              <div class="btn-group">
+                <button class="btn">Tartu</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="#">Tartu</a></li>
+                  <li><a tabindex="-1" href="#">Kohtla-Järve</a></li>
+                  <li><a tabindex="-1" href="#">Põlvamaa</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="#">Lisa uus ringkond</a></li>                
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputPassword">Erakond</label>
+            <div class="controls">
+              <div class="btn-group">
+                <button class="btn">Tartu Vaim</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="#">Tartu Vaim</a></li>
+                  <li><a tabindex="-1" href="#">Rehvormierakond</a></li>
+                  <li><a tabindex="-1" href="#">Ajuvabad Broilerid</a></li>
+                  <li class="divider"></li>
+                  <li><a tabindex="-1" href="#">Üksikkandidaat</a></li>
+                  <li><a tabindex="-1" href="#">Lisa uus erakond</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-primary">Esita taotlus</button>
+            </div>
+          </div>
+      </fieldset>
+    </form>
+  </div>
+</template>

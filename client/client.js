@@ -30,4 +30,12 @@ if (Meteor.isClient) {
         
         return Template[page_index]();
     };
+    
+    Template.kandidaadi_vorm.currentUserName = function() {
+        return Meteor.user().profile.name;
+    };
+    
+    Template.kaart.rendered = function(){
+        loadMapScript();
+    };
 }

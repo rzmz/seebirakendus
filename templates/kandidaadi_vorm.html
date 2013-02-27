@@ -1,0 +1,78 @@
+<template name="kandidaadi_vorm">
+  <div class="well">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Isikuandmed</legend>
+
+        <div class="row">
+          <div class="span3">
+            <div class="control-group">
+              <label class="control-label">Nimi</label>
+              <div class="controls">
+                <input type="text" readonly="readonly" value="{{{currentUserName}}}" />
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">Perekonnaseis</label>
+              <div class="controls">
+                <div class="btn-group">
+                  <button class="btn">Vallaline</button>
+                  <button class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="#">Vallaline</a></li>
+                    <li><a tabindex="-1" href="#">Abielus</a></li>
+                    <li><a tabindex="-1" href="#">Lahutatud</a></li>
+                    <li><a tabindex="-1" href="#">"It's complicated!"</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="inputPhone">Telefon</label>
+              <div class="controls">
+                <input type="text" id="inputPhone" placeholder="+372999999999">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">E-post</label>
+              <div class="controls">
+                <input type="text" id="inputEmail" placeholder="sinu.nimi@domeen.ee">
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="span3">
+            <div class="control-group">
+              <label class="control-label">Pilt</label>
+              <div class="controls">
+                <div class="img-rounded" style="width: 130px; height: 130px; background-color: #e0e0e0;"></div>
+                <br />
+                <button type="button" class="btn">Lae uus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <label class="control-label" for="inputDescription">Kirjeldus</label>
+          <div class="controls">
+            <textarea id="inputDescription" style="width: 80%; height: 180px;" placeholder="Muhe mees, teeb napsu ja võtab nalja"></textarea>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">Salvesta muudatused</button>
+            <button type="button" class="btn">Tühista muudatused</button>
+          </div>
+        </div>
+      </fieldset>  
+    </form>
+  </div>
+</template>
