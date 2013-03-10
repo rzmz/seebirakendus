@@ -53,4 +53,10 @@ if (Meteor.isClient) {
         loadMapScript();
     };
 
+  Template.tulemused.regions = function () {
+    var tmp = ElectionData.findOne();
+    return (tmp && tmp.regions);
+  };
+
+
 }

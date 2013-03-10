@@ -7,18 +7,9 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a tabindex="-1" href="#">Terve eesti</a></li>
-        <li><a tabindex="-1" href="#">Põlvamaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
-        <li><a tabindex="-1" href="#">Tartumaa</a></li>
+        {{#each regions}}
+        <li><a tabindex="{{cid}}" href="#">{{name}}</a></li>
+        {{/each}}
       </ul>
     </div>
     <div class="btn-group">
