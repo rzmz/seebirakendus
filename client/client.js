@@ -63,5 +63,10 @@ if (Meteor.isClient) {
     	return (tmp && tmp.persons);
     };
 
+    Template.nimekirjad.candidates = function () {
+    	var tmp = ElectionData.findOne();
+    	return (tmp && tmp.persons);
+    };
+
 
 }

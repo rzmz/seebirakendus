@@ -26,47 +26,17 @@
         {{/if}}
       </tr>      
     </thead>
-    <tbody>
+    <tbody>      
+        {{#each candidates}}
       <tr>
-        <td>Karlsson Katuselt</td>
-        <td>Kohtla-Järve</td>
-        <td>Kodumaa Kollane</td>
+        <td>{{firstName}} {{lastName}}</td>
+        <td>{{regionId}}</td>
+        <td>{{partyId}}</td>
         {{#if currentUser}}
           <td><a href="#">Hääleta!</a></td>        
         {{/if}}
       </tr>
-      <tr>
-        <td>Keegi kuskilt</td>
-        <td>Kohtla-Järve</td>
-        <td>Roheline Rohelus</td>
-        {{#if currentUser}}
-          <td><a href="#">Hääleta!</a></td>        
-        {{/if}}
-      </tr>
-      <tr>
-        <td>Ranno Rambo</td>
-        <td>Raplamaa</td>
-        <td>Roheline Rohelus</td>
-        {{#if currentUser}}
-          <td><a href="#">Hääleta!</a></td>        
-        {{/if}}
-      </tr>
-      <tr>
-        <td>Tiina Tihemetsa</td>
-        <td>Tartumaa</td>
-        <td>Tuhat &amp; Tuline</td>
-        {{#if currentUser}}
-          <td><a href="#">Hääleta!</a></td>        
-        {{/if}}
-      </tr>
-      <tr>
-        <td>Valerie Liberty</td>
-        <td>Valgamaa</td>
-        <td>Vaprakesed</td>
-        {{#if currentUser}}
-          <td><a href="#">Hääleta!</a></td>        
-        {{/if}}
-      </tr>
+	{{/each}}
     </tbody>
   </table>
 </template>
