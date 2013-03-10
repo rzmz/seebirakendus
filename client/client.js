@@ -42,4 +42,11 @@ if (Meteor.isClient) {
     Template.kaart.rendered = function(){
         loadMapScript();
     };
+
+//TODO - kustutada
+
+//  Test = new Meteor.Collection("election2013");
+  //Template.esileht.text = function () {
+    //return Test.findOne({id : 1}).name; 
+  //};
 }
