@@ -32,7 +32,7 @@ if (Meteor.isClient) {
         if (page_index != "" && !Template[page_index]) {
             page_index = 'four_oh_four';
         } else if(page_index == "") {
-            page_index = "esileht"
+            page_index = "kaart"
         }
 
         return Template[page_index]();
@@ -66,6 +66,17 @@ if (Meteor.isClient) {
     Template.nimekirjad.candidates = function () {
     	var tmp = ElectionData.findOne();
     	return (tmp && tmp.persons);
+    };
+
+    Template.kandidaadi_info.candidate = function () {
+       var tmp = ElectionData.findOne();
+       var persons = tmp.persons;
+       var candidate = persons.filter(function(el) {
+       	   return el.cid === 1; //TODO MUUTA QUERYSTRING ABIL VÕI SESSION MAP ABIL VMS!!
+       });
+       return candidate[0]; //kuna filter tagastab array ühe elemendiga
+	//TODO
+
     };
 
 
