@@ -1,0 +1,47 @@
+<template name="kandidaadi_info">
+  <div class="well">
+    <form class="form-horizontal">
+      <fieldset>
+
+SEE SIIN TESTIKS KÕIK!!!! TULEB DÜNAAMILISELT KANDIDAADI NIMELE VAJUTADES SESSIONIS ID-D MUUTA VMS!
+
+        <legend>Kandidaat: {{candidate.firstName}} {{candidate.lastName}}</legend>
+
+        <div class="row">
+          <div class="span3">
+
+
+	    <div class="control-group">
+              <label class="control-label">Piirkond: {{candidate.regionId}}</label>
+	      <label class="control-label">Erakond: {{candidate.partyId}}</label>
+              <label class="control-label">Koht nimekirjas: {{candidate.listPosition}}</label>
+	      <label class="control-label">Registreerimisnumber: {{candidate.registrationNr}}</label>          
+          </div>
+
+	    <div class="control-group">
+              <label class="control-label">Perekonnaseis: {{candidate.maritalStatus}}</label>
+	      <label class="control-label">Telefon: {{candidate.phone}}</label>
+	      <label class="control-label">Epost: {{candidate.email}}</label>
+          </div>
+          
+          <div class="span3">
+            <div class="control-group">
+              <label class="control-label">Pilt</label>
+              <div class="controls">
+                <div class="img-rounded" style="width: 130px; height: 130px; background-color: #e0e0e0;"></div>
+                <br />
+            </div>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <label class="control-label" for="inputDescription">Kirjeldus</label>
+          <div class="controls">
+            <textarea id="inputDescription" style="width: 80%; height: 180px;" placeholder="{{candidate.description}}"></textarea>
+          </div>
+        </div>
+
+      </fieldset>  
+    </form>
+  </div>
+</template>
