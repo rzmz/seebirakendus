@@ -42,45 +42,17 @@
         <th>Piirkond</th>
         <th>Erakond</th>
         <th>Hääli</th>
-        <th>Mandaat</th>
       </tr>      
     </thead>
     <tbody>
+        {{#each candidates}}
       <tr>
-        <td>Karlsson Katuselt</td>
-        <td>Kohtla-Järve</td>
-        <td>Kodumaa Kollane</td>
-        <td>7</td>
-        <td></td>
+        <td>{{firstName}} {{lastName}}</td>
+        <td>{{regionId}}</td>
+        <td>{{partyId}}</td>
+        <td>0</td>      
       </tr>
-      <tr>
-        <td>Keegi kuskilt</td>
-        <td>Kohtla-Järve</td>
-        <td>Roheline Rohelus</td>
-        <td>9</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Ranno Rambo</td>
-        <td>Raplamaa</td>
-        <td>Roheline Rohelus</td>
-        <td>1</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Tiina Tihemetsa</td>
-        <td>Tartumaa</td>
-        <td>Tuhat &amp; Tuline</td>
-        <td>23</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Valerie Liberty</td>
-        <td>Valgamaa</td>
-        <td>Vaprakesed</td>
-        <td>666</td>
-        <td><input type="checkbox" checked="checked" /></td>
-      </tr>
+	{{/each}}
     </tbody>
   </table>
 </template>
