@@ -8,6 +8,9 @@ if (Meteor.isClient) {
         }
     });
 
+    ElectionData = new Meteor.Collection("election2013"); //2013 valimiste andmed
+    Meteor.subscribe("election2013"); //sünkime serveriga
+
     Router = new myAppRouter();
     Backbone.history.start({pushState: true});
     
@@ -34,6 +37,13 @@ if (Meteor.isClient) {
 
         return Template[page_index]();
     };
+
+    //dünaamiline tiitel
+    Template.page_controller.set_title = function() {
+	var tmp = ElectionData.findOne();
+	document.title = (tmp && tmp.name);  
+    };
+
     
     Template.kandidaadi_vorm.currentUserName = function() {
         return Meteor.user().profile.name;
@@ -43,10 +53,4 @@ if (Meteor.isClient) {
         loadMapScript();
     };
 
-//TODO - kustutada
-
-//  Test = new Meteor.Collection("election2013");
-  //Template.esileht.text = function () {
-    //return Test.findOne({id : 1}).name; 
-  //};
 }
