@@ -1,4 +1,12 @@
 if (Meteor.isClient) {
+
+  ElectionData = new Meteor.Collection("election2013"); //2013 valimiste andmed  
+
+  Meteor.startup(function () {
+     Meteor.subscribe("election2013"); //sünkime serveriga   
+  });
+
+
     var myAppRouter = Backbone.Router.extend({
         routes: {
             "*path": "main"
@@ -8,8 +16,8 @@ if (Meteor.isClient) {
         }
     });
 
-    ElectionData = new Meteor.Collection("election2013"); //2013 valimiste andmed
-    Meteor.subscribe("election2013"); //sünkime serveriga
+    
+   
 
     Router = new myAppRouter();
     Backbone.history.start({pushState: true});
@@ -54,30 +62,67 @@ if (Meteor.isClient) {
     };
 
     Template.tulemused.regions = function () {
+	return getRegions();
+    };
+
+    Template.tulemused.candidates = function () {
+	return getPersons();
+    };
+
+    Template.nimekirjad.candidates = function () {
+	return getPersons();
+    };
+
+    Template.kandidaadi_info.candidate = function () {   
+         
+       var candidate = getPersons().filter(function(el) {
+       	   return el.cid === 1; //TODO MUUTA QUERYSTRING ABIL VÕI SESSION MAP ABIL VMS!!
+       });
+      
+       var person = {};
+       person.firstName = candidate[0].firstName;
+       person.lastName = candidate[0].lastName;
+       person.regionName = getRegionNameById(candidate[0].regionId);
+       person.partyName = "TODO";
+       person.listPosition = candidate[0].listPosition;
+       person.registrationNr = candidate[0].registrationNr;
+       person.maritalStatus = "TODO";
+       person.phone = candidate[0].phone;
+       person.email = candidate[0].email;
+       person.description = candidate[0].description;
+
+       return person;
+    };
+
+
+    
+
+    getPersons = function() {
+    	var tmp = ElectionData.findOne();
+    	return (tmp && tmp.persons);
+    };
+
+
+    getRegions = function() {
     	var tmp = ElectionData.findOne();
     	return (tmp && tmp.regions);
     };
 
-    Template.tulemused.candidates = function () {
-    	var tmp = ElectionData.findOne();
-    	return (tmp && tmp.persons);
+
+    //väike utilityfunktsioon
+    getRegionNameById = function(regionId) {
+
+        var regions = getRegions();
+
+        var regionName = "NO SUCH REGION!";
+
+        for (var i = 0; i < regions.length; i++) {
+          if (regions[i].cid == regionId) {
+            regionName = regions[i].name;
+          };
+        };
+
+        return regionName;
     };
-
-    Template.nimekirjad.candidates = function () {
-    	var tmp = ElectionData.findOne();
-    	return (tmp && tmp.persons);
-    };
-
-    Template.kandidaadi_info.candidate = function () {
-       var tmp = ElectionData.findOne();
-       var persons = tmp.persons;
-       var candidate = persons.filter(function(el) {
-       	   return el.cid === 1; //TODO MUUTA QUERYSTRING ABIL VÕI SESSION MAP ABIL VMS!!
-       });
-       return candidate[0]; //kuna filter tagastab array ühe elemendiga
-	//TODO
-
-    };
-
 
 }
