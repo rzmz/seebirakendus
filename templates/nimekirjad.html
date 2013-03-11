@@ -29,7 +29,7 @@
     <tbody>      
         {{#each candidates}}
       <tr>
-        <td>{{firstName}} {{lastName}}</td>
+        <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}} {{lastName}}</a></td>
         <td>{{regionId}}</td>
         <td>{{partyId}}</td>
         {{#if currentUser}}

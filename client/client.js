@@ -111,11 +111,13 @@ if (Meteor.isClient) {
 
 		for (var i = 0; i < persons.length; i++) {
 			var tmpPer = {};
+			tmpPer.cid = persons[i].cid;
+                        console.log(tmpPer.cid);
 		        tmpPer.firstName = persons[i].firstName;
 		        tmpPer.lastName = persons[i].lastName;
 		        tmpPer.regionName = getRegionNameById(persons[i].regionId);
 		        tmpPer.partyName = getPartyNameById(persons[i].partyId);
-		        tmpPer.votes = 0; //TODO!
+		        tmpPer.votes = persons[i].votes; //TODO!
 		        ret.push(tmpPer);
 		};
 	   
