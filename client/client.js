@@ -76,14 +76,14 @@ if (Meteor.isClient) {
     Template.kandidaadi_info.candidate = function () {   
          
        var candidate = getPersons().filter(function(el) {
-       	   return el.cid === 1; //TODO MUUTA QUERYSTRING ABIL VÕI SESSION MAP ABIL VMS!!
+       	   return el.cid === 2; //TODO MUUTA QUERYSTRING ABIL VÕI SESSION MAP ABIL VMS!!
        });
       
        var person = {};
        person.firstName = candidate[0].firstName;
        person.lastName = candidate[0].lastName;
        person.regionName = getRegionNameById(candidate[0].regionId);
-       person.partyName = "TODO";
+       person.partyName = getPartyNameById(candidate[0].partyId);
        person.listPosition = candidate[0].listPosition;
        person.registrationNr = candidate[0].registrationNr;
        person.maritalStatus = "TODO";
@@ -96,7 +96,7 @@ if (Meteor.isClient) {
 
 
     
-
+    //andmebaasist arrayde saamise funktsioonid
     getPersons = function() {
     	var tmp = ElectionData.findOne();
     	return (tmp && tmp.persons);
@@ -108,8 +108,13 @@ if (Meteor.isClient) {
     	return (tmp && tmp.regions);
     };
 
+    getParties = function() {
+    	var tmp = ElectionData.findOne();
+    	return (tmp && tmp.parties);
+    };
 
-    //väike utilityfunktsioon
+
+    //utilityfunktsioonid
     getRegionNameById = function(regionId) {
 
         var regions = getRegions();
@@ -123,6 +128,21 @@ if (Meteor.isClient) {
         };
 
         return regionName;
+    };
+
+    getPartyNameById = function(partyId) {
+        var parties = getParties();
+        if (partyId == 0) return "Üksikkandidaat";
+
+        var partyName = "POLE SELLIST ERAKONDA";
+
+        for (var i = 0; i < parties.length; i++) {
+          if (parties[i].cid == partyId) {
+            partyName = parties[i].name;
+          };
+        };
+
+        return partyName;
     };
 
 }
