@@ -63,7 +63,6 @@ if (Meteor.isClient) {
 
     Template.tulemused.regions = function () {
 	var regions = getRegions();
-        console.log(regions);
 
         var ret = [];
 
@@ -77,8 +76,24 @@ if (Meteor.isClient) {
         return ret;
     };
 
+
+//TODO - panna sõltuma filtreerimisvalikutest..
     Template.tulemused.candidates = function () {
-	return getPersons();
+	var persons = getPersons();
+
+        var ret = [];
+
+        for (var i = 0; i < persons.length; i++) {
+		var tmpPer = {};
+                tmpPer.firstName = persons[i].firstName;
+                tmpPer.lastName = persons[i].lastName;
+                tmpPer.regionName = getRegionNameById(persons[i].regionId);
+                tmpPer.partyName = getPartyNameById(persons[i].partyId);
+                tmpPer.votes = 0; //TODO!
+                ret.push(tmpPer);
+	};
+   
+        return ret;
     };
 
     Template.nimekirjad.candidates = function () {
