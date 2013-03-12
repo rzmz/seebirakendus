@@ -155,11 +155,15 @@ if (Meteor.isClient) {
     };
 
 
-    Template.nimekirjad.candidates = function () {
+
+    var nimekirjad_candidates;
+
+    set_nimekirjad_candidates = function() {
 	//TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
         var persons = getPersons();	
         if (persons) {
-		var ret = [];
+
+		nimekirjad_candidates = [];
 
 		for (var i = 0; i < persons.length; i++) {
 			var tmpPer = {};
@@ -168,12 +172,40 @@ if (Meteor.isClient) {
 		        tmpPer.lastName = persons[i].lastName;
 		        tmpPer.regionName = getRegionNameById(persons[i].regionId);
 		        tmpPer.partyName = getPartyNameById(persons[i].partyId);
-		        ret.push(tmpPer);
+
+			//filterdame nime järgi
+
+			var searched_name = Session.get("nimekirjad_candidates_searched_name");
+			if (searched_name) {
+				var full_name = tmpPer.firstName + " " + tmpPer.lastName;
+				if (!full_name.indexOf(searched_name) == 0) continue;
+		        };
+
+		        nimekirjad_candidates.push(tmpPer);
 		};
-	   
-		return ret;
 	}
     };
+
+    get_nimekirjad_candidates = function() {
+	if (!nimekirjad_candidates) set_nimekirjad_candidates();
+        if (nimekirjad_candidates) return nimekirjad_candidates;
+    };
+
+    Template.nimekirjad.candidates = function () {
+	return get_nimekirjad_candidates();
+    };
+
+
+  Template.nimekirjad.events({
+    'click #search': function () {
+	//TODO - esimese asjana kustuta kõik väärtused.. 
+      Session.set("nimekirjad_candidates_searched_name", "Rom");
+      set_nimekirjad_candidates();
+      console.log($('#searchfield').val());      
+    }
+  });
+
+
 
     Template.kandidaadi_info.candidate = function () {   
        
