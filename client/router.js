@@ -37,5 +37,5 @@ var SeebirakendusRouter = Backbone.Router.extend({
     }
 });
 
-Router = new SeebirakendusRouter();
+var Router = new SeebirakendusRouter();
 Backbone.history.start({pushState: true});

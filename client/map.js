@@ -14,7 +14,7 @@ var initialize = function() {
 var loadMapScript = function() {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    if(Meteor.absoluteUrl().indexOf("localhost") === -1){
+    if (Meteor.absoluteUrl().indexOf("localhost") === -1) {
         script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBa-Tfefz_ZhLbBr9cwALMNFJ3e6rjdpO4&sensor=true&callback=initialize";
     } else {
         script.src = "http://maps.googleapis.com/maps/api/js?sensor=true&callback=initialize";
