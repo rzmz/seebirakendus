@@ -17,3 +17,6 @@ body {
 #errors {
     color:red;
 }
+#candidate-img {
+    margin-left:100px;
+}
