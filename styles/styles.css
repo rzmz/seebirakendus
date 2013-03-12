@@ -10,13 +10,19 @@ body {
 }
 
 #map_canvas {
-  width: 1170px;
-	height: 640px;
-  background-color: #444444;
+  position: absolute; 
+  top:200px;
+  left:5%;
+  width:90%; 
+  height:60%; 
 }
 #errors {
     color:red;
 }
 #candidate-img {
     margin-left:100px;
+}
+.navbar .nav li {
+    min-width: 120px;
+    text-align: center;
 }
