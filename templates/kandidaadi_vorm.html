@@ -1,9 +1,9 @@
 <template name="kandidaadi_vorm">
   <div class="well">
+    <div id="errors"></div>
     <form class="form-horizontal">
       <fieldset>
         <legend>Isikuandmed</legend>
-
         <div class="row">
           <div class="span3">
             <div class="control-group">
@@ -31,14 +31,14 @@
               </div>
             </div>
 
-            <div class="control-group">
+            <div class="control-group" id="1">
               <label class="control-label" for="inputPhone">Telefon</label>
               <div class="controls">
                 <input type="text" id="inputPhone" placeholder="+372999999999">
               </div>
             </div>
 
-            <div class="control-group">
+            <div class="control-group" id="2">
               <label class="control-label" for="inputEmail">E-post</label>
               <div class="controls">
                 <input type="text" id="inputEmail" placeholder="sinu.nimi@domeen.ee">
@@ -59,7 +59,7 @@
           </div>
         </div>
         
-        <div class="control-group">
+        <div class="control-group" id="3">
           <label class="control-label" for="inputDescription">Kirjeldus</label>
           <div class="controls">
             <textarea id="inputDescription" style="width: 80%; height: 180px;" placeholder="Muhe mees, teeb napsu ja võtab nalja"></textarea>
@@ -68,7 +68,7 @@
         
         <div class="control-group">
           <div class="controls">
-            <button type="submit" class="btn btn-primary">Salvesta muudatused</button>
+            <button type="button" class="btn btn-primary" onclick="validate();">Salvesta muudatused</button>
             <button type="button" class="btn">Tühista muudatused</button>
           </div>
         </div>

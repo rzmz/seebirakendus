@@ -14,3 +14,6 @@ body {
 	height: 640px;
   background-color: #444444;
 }
+#errors {
+    color:red;
+}
