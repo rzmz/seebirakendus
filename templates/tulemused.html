@@ -47,10 +47,34 @@
     <tbody>
         {{#each candidates}}
       <tr>
-        <td>{{firstName}} {{lastName}}</td>
+        <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}} {{lastName}}</a></td>
         <td>{{regionName}}</td>
-        <td>{{partyName}}</td>
+	{{#unless noPartyLink}}
+	<td><a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a></td>           
+	{{else}}
+	<td>{{partyName}}</td>
+	{{/unless}}
         <td>{{votes}}</td>      
+      </tr>
+	{{/each}}
+    </tbody>
+  </table>
+
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Hääli</th>
+        <th>Mandaate</th>
+      </tr>      
+    </thead>
+    <tbody>
+        {{#each parties}}
+      <tr>
+        <td><a href="../erakonna_info?id={{{cid}}}">{{name}}</a></td>      
+        <td>{{votes}}</td>
+        <td>{{mandates}}</td>      
       </tr>
 	{{/each}}
     </tbody>

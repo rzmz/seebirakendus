@@ -32,6 +32,12 @@ if (Meteor.isClient) {
                     	Session.set("candidate_info_id", parameters["id"]);		    
 	            };
 
+		    if (urlElements[0] == "erakonna_info") {                       
+			//TODO - siin teha check, et üldse "id" parameeter leiduks
+			//MIDA TEHA SIIS, KUI SEDA POLE?
+                    	Session.set("party_info_id", parameters["id"]);		    
+	            };
+
 		//see jätta viimaseks reaks, et basepathi normaalselt saaks..
 		url_path = urlElements[0];
 	    };            
@@ -105,6 +111,7 @@ if (Meteor.isClient) {
 
 //TODO - panna sõltuma filtreerimisvalikutest..
     Template.tulemused.candidates = function () {
+        //TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
         var persons = getPersons();	
         if (persons) {
 		var ret = [];
@@ -112,12 +119,13 @@ if (Meteor.isClient) {
 		for (var i = 0; i < persons.length; i++) {
 			var tmpPer = {};
 			tmpPer.cid = persons[i].cid;
-                        console.log(tmpPer.cid);
 		        tmpPer.firstName = persons[i].firstName;
 		        tmpPer.lastName = persons[i].lastName;
 		        tmpPer.regionName = getRegionNameById(persons[i].regionId);
+                        tmpPer.partyId = persons[i].partyId;
+                        if (persons[i].partyId == 0) tmpPer.noPartyLink = true; 
 		        tmpPer.partyName = getPartyNameById(persons[i].partyId);
-		        tmpPer.votes = persons[i].votes; //TODO!
+		        tmpPer.votes = persons[i].votes; 
 		        ret.push(tmpPer);
 		};
 	   
@@ -125,8 +133,46 @@ if (Meteor.isClient) {
 	}
     };
 
+
+//TODO - panna sõltuma filtreerimisvalikutest..
+    Template.tulemused.parties = function () {
+        //TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
+        var parties = getParties();	
+        if (parties) {
+		var ret = [];
+
+		for (var i = 0; i < parties.length; i++) {
+			var tmpPar = {};
+			tmpPar.cid = parties[i].cid;
+		        tmpPar.name = parties[i].name;
+		        tmpPar.votes = i * 100; //TODO - teha eraldi utilitymeetod
+		        tmpPar.mandates = i * 2; //TODO - teha eraldi utilitymeetod
+		        ret.push(tmpPar);
+		};
+	   
+		return ret;
+	}
+    };
+
+
     Template.nimekirjad.candidates = function () {
-	return getPersons();
+	//TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
+        var persons = getPersons();	
+        if (persons) {
+		var ret = [];
+
+		for (var i = 0; i < persons.length; i++) {
+			var tmpPer = {};
+			tmpPer.cid = persons[i].cid;
+		        tmpPer.firstName = persons[i].firstName;
+		        tmpPer.lastName = persons[i].lastName;
+		        tmpPer.regionName = getRegionNameById(persons[i].regionId);
+		        tmpPer.partyName = getPartyNameById(persons[i].partyId);
+		        ret.push(tmpPer);
+		};
+	   
+		return ret;
+	}
     };
 
     Template.kandidaadi_info.candidate = function () {   
@@ -162,6 +208,26 @@ if (Meteor.isClient) {
 	       person.description = candidate[0].description;
 
 	       return person;
+	}
+    };
+
+    Template.erakonna_info.party = function () {   
+       
+       var parties = getParties();
+
+       if (parties) {
+		 
+	       var partyArray = parties.filter(function(el) {
+	       	   return el.cid == Session.get("party_info_id");
+	       });
+		//TODO - siia kontroll, kas üldse keegi leiti!
+	        //KUI EI, NÄIDATA MINGIT LEHTE ET "SELLIST ERAKONDA EI LEIDU"
+	      
+ 	       var party = {};      
+	       party.name = partyArray[0].name;
+	       party.email = partyArray[0].email;
+	       
+	       return party;
 	}
     };
 
