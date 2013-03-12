@@ -208,8 +208,6 @@ if (Meteor.isClient) {
       
       Session.set("nimekirjad_candidates_searched_name", query);
       set_nimekirjad_candidates();    
-      console.log(query);
-      location.reload();
     }
   });
 
