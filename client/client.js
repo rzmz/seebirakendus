@@ -1,10 +1,11 @@
 if (Meteor.isClient) {
 
-  ElectionData = new Meteor.Collection("election2013"); //2013 valimiste andmed  
+  ElectionData = new Meteor.Collection("election2013"); //2013 valimiste üldandmed  
 
 
   Meteor.startup(function () {
-     Meteor.subscribe("election2013"); //sünkime serveriga   
+     //sünkime serveriga
+     Meteor.subscribe("election2013");
   });
 
     var myAppRouter = Backbone.Router.extend({
@@ -177,7 +178,10 @@ if (Meteor.isClient) {
 
 			var searched_name = Session.get("nimekirjad_candidates_searched_name");
 			if (searched_name) {
-				var full_name = tmpPer.firstName + " " + tmpPer.lastName;
+				//trim() võib olla..?
+				var full_name = (tmpPer.firstName + " " + tmpPer.lastName)
+					.trim()
+					.toLowerCase();
 				if (!full_name.indexOf(searched_name) == 0) continue;
 		        };
 
@@ -198,10 +202,14 @@ if (Meteor.isClient) {
 
   Template.nimekirjad.events({
     'click #search': function () {
-	//TODO - esimese asjana kustuta kõik väärtused.. 
-      Session.set("nimekirjad_candidates_searched_name", "Rom");
-      set_nimekirjad_candidates();
-      console.log($('#searchfield').val());      
+	//TODO - esimese asjana kustuta kõik väärtused..       
+      //ecmascript 5, oot mis brausereid me toetama pidimegi..?
+      var query = $('#searchfield').val().trim().toLowerCase();
+      
+      Session.set("nimekirjad_candidates_searched_name", query);
+      set_nimekirjad_candidates();    
+      console.log(query);
+      location.reload();
     }
   });
 
