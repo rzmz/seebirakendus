@@ -11,7 +11,12 @@
     $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection persons --file data/persons.json --jsonArray
     $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection regions --file data/regions.json --jsonArray
     $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection parties --file data/parties.json --jsonArray
-    
+
+To reset the database:
+$ meteor reset
+$ meteor run
+$ (in another tab/window) sh reset_local_data.sh
+
 #View the result in web browser:
     http://localhost:3000
     
