@@ -1,0 +1,22 @@
+##### Seebirakendus HOWTO
+
+### Command list for running the application
+### All commands apply for root folder of the package
+
+#Run meteor:
+    $ meteor
+
+#Initialize mongo database (PS! While meteor is running!):
+    $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection elections --file data/elections.json --jsonArray
+    $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection persons --file data/persons.json --jsonArray
+    $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection regions --file data/regions.json --jsonArray
+    $ mongoimport --host 127.0.0.1 --port 3002 --db meteor --collection parties --file data/parties.json --jsonArray
+    
+#View the result in web browser:
+    http://localhost:3000
+    
+    
+# Application working on UNIX and Win7 systems
+
+# Information about Meteor available at http://meteor.com/
+# For information about Meteor on Windows go to http://win.meteor.com/
