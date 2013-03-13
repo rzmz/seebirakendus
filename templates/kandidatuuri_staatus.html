@@ -1,44 +1,41 @@
 <template name="kandidatuuri_staatus">
   <div class="well">
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="candidacy-apply-form">
+      <input type="hidden" id="selected-region" />
+      <input type="hidden" id="selected-party" />
       <fieldset>
         <legend>Staatus</legend>
-        <div class="alert alert-info">
+        <div class="alert alert-info" id="alert-messages">
           Sinu kandidatuuritaotlus on esitamata.
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputEmail">Valimisringkond</label>
+            <label class="control-label" id="select-region-label">Valimisringkond</label>
             <div class="controls">
-              <div class="btn-group">
-                <button class="btn">Tartu</button>
+              <div class="btn-group" id="regions-dropdown">
+                <button class="btn dropdown-label">Vali...</button>
                 <button class="btn dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a tabindex="-1" href="#">Tartu</a></li>
-                  <li><a tabindex="-1" href="#">Kohtla-Järve</a></li>
-                  <li><a tabindex="-1" href="#">Põlvamaa</a></li>
-                  <li class="divider"></li>
-                  <li><a tabindex="-1" href="#">Lisa uus ringkond</a></li>                
+                  {{#each regions}}
+                    <li><a data-cid="{{cid}}" tabindex="{{cid}}" href="#">{{name}}</a></li>
+                  {{/each}}
                 </ul>
               </div>
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" for="inputPassword">Erakond</label>
+            <label class="control-label" id="select-party-label">Erakond</label>
             <div class="controls">
-              <div class="btn-group">
-                <button class="btn">Tartu Vaim</button>
+              <div class="btn-group" id="parties-dropdown">
+                <button class="btn dropdown-label">Vali...</button>
                 <button class="btn dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a tabindex="-1" href="#">Tartu Vaim</a></li>
-                  <li><a tabindex="-1" href="#">Rehvormierakond</a></li>
-                  <li><a tabindex="-1" href="#">Ajuvabad Broilerid</a></li>
-                  <li class="divider"></li>
-                  <li><a tabindex="-1" href="#">Üksikkandidaat</a></li>
-                  <li><a tabindex="-1" href="#">Lisa uus erakond</a></li>
+                  {{#each parties}}
+                    <li><a data-cid="{{cid}}" tabindex="{{cid}}" href="#">{{name}}</a></li>
+                  {{/each}}
                 </ul>
               </div>
             </div>
