@@ -24,3 +24,8 @@ Template.page_controller.set_title = function() {
     var tmp = ElectionData.findOne();
     document.title = (tmp && tmp.name);
 };
+
+Template.page_controller.rendered = function() {
+    var $table = $("table.tablesorter");
+    $table.tablesorter({sortList: [[0,0]]});
+}

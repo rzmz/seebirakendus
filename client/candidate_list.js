@@ -62,8 +62,3 @@ Template.nimekirjad.events({
         //ecmascript 5, oot mis brausereid me toetama pidimegi..?
     }
 });
-
-Template.nimekirjad.rendered = function() {
-    var $table = $("#sortabletable");
-    $table.tablesorter({sortList: [[0,0]]});
-}

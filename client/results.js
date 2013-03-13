@@ -37,7 +37,6 @@ Template.tulemused.candidates = function () {
     }
 };
 
-
 //TODO - panna sõltuma filtreerimisvalikutest..
 Template.tulemused.parties = function () {
     //TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
