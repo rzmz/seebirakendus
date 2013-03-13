@@ -1,50 +1,32 @@
 //andmebaasist arrayde saamise funktsioonid
 var getPersons = function() {
-    var data = ElectionData.findOne();
-    if (data) {
-        return data.persons;
-		/*
-	        var regions = [];
-		for (var i = 0; i < data.regions.length; i++) {			
-			var region = {};
-                        region.name = data.regions[i].name;
-			region.cid = data.regions[i].cid;
-                        regions.push(region);
-		};
-		return regions;
-		*/
-	}
+    if (personsReady) {
+	    var cursor = Persons.find({});
+	    if (cursor) {
+		var data = cursor.fetch();
+		return data;		
+		}
+    }
 };
 
 
 var getRegions = function() {
-    var data = ElectionData.findOne();
-    if (data) {
-        var regions = [];
-        for (var i = 0; i < data.regions.length; i++) {
-			var region = {};
-            region.name = data.regions[i].name;
-            region.cid = data.regions[i].cid;
-            regions.push(region);
-		};
-		return regions;
-	}
+    if (regionsReady) {
+	    var cursor = Regions.find({});
+	    if (cursor) {
+		var data = cursor.fetch();
+		return data;		
+		}
+    }
 };
 
 var getParties = function() {
-    var data = ElectionData.findOne();
-    if (data) {
-        return data.parties;
-/*
-	        var regions = [];
-		for (var i = 0; i < data.regions.length; i++) {			
-			var region = {};
-                        region.name = data.regions[i].name;
-			region.cid = data.regions[i].cid;
-                        regions.push(region);
-		};
-		return regions;
-*/
+    if (partiesReady) {
+	    var cursor = Parties.find({});
+	    if (cursor) {
+		var data = cursor.fetch();
+		return data;		
+		}    
     }
 };
 

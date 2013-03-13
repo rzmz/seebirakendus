@@ -3,9 +3,11 @@ var nimekirjad_candidates;
 var set_nimekirjad_candidates = function() {
     // TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
 
-    var persons = getPersons();
+    //TODO
+    var persons = Persons.find({}).fetch();
     
     if (persons) {
+	console.log(persons);
                 
         nimekirjad_candidates = [];
     
@@ -41,8 +43,6 @@ var get_nimekirjad_candidates = function() {
 Template.nimekirjad.candidates = function() {
     return get_nimekirjad_candidates();
 };
-
-var Persons = new Meteor.Collection('persons');
 
 Template.nimekirjad.events({
     'submit #search-form, click #search-btn': function(e) {

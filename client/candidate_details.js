@@ -1,5 +1,7 @@
 Template.kandidaadi_info.candidate = function() {
 
+    if (regionsReady && personsReady && partiesReady) {
+
     var persons = getPersons();
 
     if (persons) {
@@ -29,5 +31,6 @@ Template.kandidaadi_info.candidate = function() {
         person.description = candidate[0].description;
 
         return person;
+    }
     }
 };

@@ -41,7 +41,7 @@ Template.page_controller.display_page = function() {
 
 //dünaamiline tiitel
 Template.page_controller.set_title = function() {
-    var tmp = ElectionData.findOne();
+    var tmp = Elections.findOne();
     document.title = (tmp && tmp.name);
 };
 
