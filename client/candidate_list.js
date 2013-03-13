@@ -19,6 +19,7 @@ set_nimekirjad_candidates = function() {
             tmpPer.cid = persons[i].cid;
             tmpPer.firstName = persons[i].firstName;
             tmpPer.lastName = persons[i].lastName;
+	    tmpPer.partyId = persons[i].partyId; 
             tmpPer.regionName = getRegionNameById(persons[i].regionId);
             tmpPer.partyName = getPartyNameById(persons[i].partyId);
     
