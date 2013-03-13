@@ -1,22 +1,42 @@
 Template.page_controller.events = {
     'click ul.nav li a': function (event) {
         event.preventDefault();
-        // $(event.target).parent().parent().find('li').removeClass("active");
-        // $(event.target).parent().addClass("active");
         var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
         var pathname = reg.exec(event.currentTarget.href)[1];
-        Router.navigate(pathname, true);
+        Router.navigate(pathname);
+        
+        var $container = $('#pageMainContent');
+        $container.fadeOut(200, function(e){
+            $(this).html(get_template(pathname.replace('/', '')));
+            $(this).fadeIn(200);
+        });
+        
+        $(event.target).parent().parent().find('li').removeClass("active");
+        $(event.target).parent().addClass("active");
     }
 };
 
-Template.page_controller.display_page = function() {
-    var page_index = Session.get('page_id');
+var get_page_index = function(which){
+    var page_index = Session.get('page_id');    
+    if(which !== false){
+        page_index = which;
+        Session.set('page_id', which);
+    }
     if (page_index != "" && !Template[page_index]) {
         page_index = 'four_oh_four';
     } else if(page_index == "") {
         page_index = "kaart"
     }
-    return Template[page_index]();
+    return page_index;    
+}
+
+var get_template = function(which) {
+    var page_index = get_page_index(which);
+    return Template[page_index]();    
+}
+
+Template.page_controller.display_page = function() {
+    return get_template(false);
 };
 
 //dünaamiline tiitel
@@ -28,4 +48,8 @@ Template.page_controller.set_title = function() {
 Template.page_controller.rendered = function() {
     var $table = $("table.tablesorter");
     $table.tablesorter({sortList: [[0,0]]});
+    
+    // quite a hack to get the bloody menuitems active
+    var page_index = get_page_index(false);
+    $('#main-menu').find('li').find('a[href$="' + page_index + '"]').parent().addClass('active');
 }

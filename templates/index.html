@@ -21,20 +21,25 @@
 
 <template name="page_controller">
   {{{set_title}}}
+  {{#constant}}
   {{> menu}}
-  {{{display_page}}}
+  {{/constant}}
+  <div id="pageMainContent">
+    {{{display_page}}}
+  </div>
 </template>
 
 <template name="menu">
   <div class="navbar navbar-inverse noprint">
     <div class="navbar-inner">
-        <ul class="nav">
+        <ul id="main-menu" class="nav">
           <li><a href="/tulemused">Tulemused</a></li>
           <li><a href="/nimekirjad">Nimekirjad</a></li>
           <li><a href="/kandidatuur">Kandidatuur</a></li>
           <li><a href="/kaart">Kaart</a></li>
         </ul>
         <ul class="nav pull-right">
+          <li><a href="/test">Test</a></li>
         </ul>
       </div>
     </div>
