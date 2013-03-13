@@ -1,15 +1,18 @@
-var nimekirjad_candidates = new Meteor.Collection(null);
+Session.set("candidates_list_loading", false);
+var nimekirjad_candidates;
 
-var set_nimekirjad_candidates = function() {
+
+set_nimekirjad_candidates = function() {
     // TODO - teha mingi ühine meetod kandidaadiinfo saamiseks	   
 	
 	//resetime listi
-    nimekirjad_candidates = new Meteor.Collection(null);
 
-    var persons = getPersons();
-    
-    if (persons) {
-	
+    Session.set("candidates_list_loading", true);
+
+    if (!nimekirjad_candidates) nimekirjad_candidates = new Meteor.Collection(null);   
+    else nimekirjad_candidates.remove({});
+
+    var persons = Persons.find({}).fetch();
 
         for (var i = 0; i < persons.length; i++) {
             var tmpPer = {};
@@ -33,15 +36,23 @@ var set_nimekirjad_candidates = function() {
             nimekirjad_candidates.insert(tmpPer);
         };
 	
-    }	
+	
+	Session.set("candidates_list_loading", false);
+};
+
+Template.nimekirjad.listLoading = function() {
+	return Session.get("candidates_list_loading");
 };
 
 Template.nimekirjad.candidates = function() {
-	//hack me baby one more time
+	//hack me baby one more time	
 
-	if (personsReady && regionsReady && partiesReady && nimekirjad_candidates) {
-		set_nimekirjad_candidates();
-    		return nimekirjad_candidates.find({}).fetch();
+	if (personsReady && regionsReady && partiesReady && nimekirjad_candidates) {		
+		return nimekirjad_candidates.find({}).fetch();
+	};
+
+	if (personsReady && regionsReady && partiesReady && !nimekirjad_candidates) {
+		set_nimekirjad_candidates();	
 	};
 };
 
