@@ -58,6 +58,20 @@ var getPartyNameById = function(partyId) {
     return partyName;
 }
 
+var getVotesByPartyId = function(partyId) {
+	var party = getPartyNameById(partyId);
+	var persons = getPersons(); 
+	
+	var totalVotes = 0;
+
+	for (var i = 0; i < persons.length; i++) {
+		if (persons[i].partyId == partyId)
+			totalVotes += persons[i].votes;
+	}
+
+	return totalVotes; 
+}
+
 var btn_spinner_opts = {
     lines: 10, // The number of lines to draw
     length: 5, // The length of each line
