@@ -49,7 +49,7 @@ Template.tulemused.parties = function () {
             tmpPar.cid = parties[i].cid;
 		    tmpPar.name = parties[i].name;
             tmpPar.votes = getVotesByPartyId(parties[i].cid);
-            tmpPar.mandates = i * 2; //TODO - teha eraldi utilitymeetod
+            tmpPar.mandates = getMandatesByPartyId(parties[i].cid);
             ret.push(tmpPar);
 		};
         	   

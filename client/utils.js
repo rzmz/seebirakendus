@@ -59,7 +59,6 @@ var getPartyNameById = function(partyId) {
 }
 
 var getVotesByPartyId = function(partyId) {
-	var party = getPartyNameById(partyId);
 	var persons = getPersons(); 
 	
 	var totalVotes = 0;
@@ -70,6 +69,15 @@ var getVotesByPartyId = function(partyId) {
 	}
 
 	return totalVotes; 
+}
+
+//TODO - PLACEHOLDER!
+var getMandatesByPartyId = function(partyId) {
+
+	var votes = getVotesByPartyId(partyId);
+	var mandates = Math.floor(votes / 400000 * 100 * 2.2); //wat
+	return mandates;
+
 }
 
 var btn_spinner_opts = {
