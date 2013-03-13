@@ -12,9 +12,9 @@
         {{/each}}
       </ul>
     </div>
-    <div class="btn-group">
-      <button class="btn">Erakonnad</button>
-      <button class="btn active">Kandidaadid</button>
+    <div class="btn-group" id="results_type">
+      <button class="btn" data-type="candidates">Kandidaadid</button>
+      <button class="btn" data-type="parties">Erakonnad</button>
     </div>
   </div>
   
@@ -26,41 +26,44 @@
       </button>
       <ul class="dropdown-menu">
         <li><a tabindex="-1" href="#">Tabelkujul</a></li>
-        <li><a tabindex="-1" href="#">Veel mingi variant</a></li>
-        <li><a tabindex="-1" href="#">Kolmas variant ka, palun</a></li>
+        <!-- <li><a tabindex="-1" href="#">Veel mingi variant</a></li>
+        <li><a tabindex="-1" href="#">Kolmas variant ka, palun</a></li> -->
       </ul>
     </div>    
   </div>
   
   <br /><br />
 
-  
+  {{#if show_candidates}}
   <table class="table table-bordered table-striped tablesorter">
     <thead>
       <tr>
-        <th>Nimi</th>
+        <th>Eesnimi</th>
+        <th>Perenimi</th>
         <th>Piirkond</th>
         <th>Erakond</th>
         <th>Hääli</th>
-      </tr>      
+      </tr>
     </thead>
     <tbody>
-        {{#each candidates}}
-      <tr>
-        <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}} {{lastName}}</a></td>
-        <td>{{regionName}}</td>
-	{{#unless noPartyLink}}
-	<td><a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a></td>           
-	{{else}}
-	<td>{{partyName}}</td>
-	{{/unless}}
-        <td>{{votes}}</td>      
+      {{#each candidates}}
+        <tr>
+          <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}}</a></td>
+          <td><a href="../kandidaadi_info?id={{{cid}}}">{{lastName}}</a></td>
+          <td>{{regionName}}</td>
+          <td>
+            {{#unless noPartyLink}}
+              <a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a>
+            {{else}}
+              {{partyName}}
+	          {{/unless}}
+          </td>
+          <td>{{votes}}</td>
       </tr>
-	{{/each}}
+    {{/each}}
     </tbody>
   </table>
-
-
+  {{else}}
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -79,4 +82,5 @@
 	{{/each}}
     </tbody>
   </table>
+  {{/if}}
 </template>

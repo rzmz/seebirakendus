@@ -51,5 +51,12 @@ Template.page_controller.rendered = function() {
     
     // quite a hack to get the bloody menuitems active
     var page_index = get_page_index(false);
-    $('#main-menu').find('li').find('a[href$="' + page_index + '"]').parent().addClass('active');
+
+    // possible attributes:
+    // = is exactly equal
+    // != is not equal
+    // ^= is starts with
+    // $= is ends with
+    // *= is contains
+    $('#main-menu').find('li').find('a[href*="' + page_index + '"]').parent().addClass('active');
 }
