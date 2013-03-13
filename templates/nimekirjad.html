@@ -1,42 +1,46 @@
 <template name="nimekirjad">
-
+  
   <div class="input-append">
     <form id="search-form" class="form-search" method="post">
       <input id="searchfield" class="span2" id="appendedInputButton" type="text">
-      <button id="search-btn" class="btn" type="button">Otsi</button>
+      <button id="search-btn" class="btn" type="button">Otsi nime järgi</button>
     </form>
   </div>
 
   {{#if currentUser}}
-  <div class="alert alert-block">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4>Valitud kandidaat</h4>
-    Valitud kandidaat puudub. Enda hääle andmiseks kandidaadile klõpsa allpool olevas nimekirjas sobiva kandidaadi nime järel "HÄÄLETA".
-  </div>
+    <div class="alert alert-block">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4>Valitud kandidaat</h4>
+      Valitud kandidaat puudub. Enda hääle andmiseks kandidaadile klõpsa allpool olevas nimekirjas sobiva kandidaadi nime järel "HÄÄLETA".
+    </div>
   {{/if}}
   
-  <table class="table table-bordered table-striped">
+  <table id="sortabletable" class="table table-bordered table-striped tablesorter">
     <thead>
       <tr>
-        <th>Nimi</th>
+        <th>Eesnimi</th>
+        <th>Perenimi</th>
         <th>Piirkond</th>
         <th>Erakond</th>
         {{#if currentUser}}
           <th>Hääletus</th>
         {{/if}}
-      </tr>      
-    </thead>
-    <tbody>      
-        {{#each candidates}}
-      <tr>
-        <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}} {{lastName}}</a></td>
-        <td>{{regionName}}</td>
-        <td>{{partyName}}</td>
-        {{#if currentUser}}
-          <td><a href="#">Hääleta!</a></td>        
-        {{/if}}
       </tr>
-	{{/each}}
+    </thead>
+    <tbody>
+      {{#isolate}}
+      {{#each candidates}}
+        <tr>
+          <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}}</a></td>
+          <td><a href="../kandidaadi_info?id={{{cid}}}">{{lastName}}</a></td>
+          <td>{{regionName}}</td>
+          <td>{{partyName}}</td>
+          {{#if currentUser}}
+            <td><a href="#">Hääleta!</a></td>        
+          {{/if}}
+        </tr>
+      {{/each}}
+      {{/isolate}}
     </tbody>
   </table>
 </template>

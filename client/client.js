@@ -1,4 +1,4 @@
-var ElectionData = new Meteor.Collection("election2013"); //2013 valimiste üldandmed  
+var ElectionData = new Meteor.Collection("election2013"); //2013 valimiste üldandmed
 
 Meteor.startup(function () {
     //sünkime serveriga

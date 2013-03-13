@@ -43,7 +43,7 @@
   }
 
   if(no > 0) {
-   	document.getElementById("errors").innerHTML = "<span class=\"error\">Viga vormi täitsmisel. Palun täitkse kõik nõutud väljad.</span><br />";
+   	document.getElementById("errors").innerHTML = "<span class=\"error\">Viga vormi täitmisel. Palun täitke kõik nõutud väljad.</span><br />";
   }
   else {
     document.getElementById("errors").innerHTML = "";
