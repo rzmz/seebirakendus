@@ -2,35 +2,30 @@ Template.kandidaadi_info.candidate = function() {
 
     if (regionsReady && personsReady && partiesReady) {
 
-    var persons = getPersons();
+	var tmp = Persons.findOne({cid: Session.get("candidate_info_id")});
 
-	    if (persons) {
-		var candidate = persons.filter(function(el) {
-		    return el.cid == Session.get("candidate_info_id");
-		});
-		
-		//TODO - siia kontroll, kas üldse keegi leiti!
-		//KUI EI, NÄIDATA MINGIT LEHTE ET "SELLIST KANDIDAATI EI LEIDU"
+	if (tmp && tmp) {
 		var person = {};
-		person.firstName = candidate[0].firstName;
-		person.lastName = candidate[0].lastName;
-		person.regionName = getRegionNameById(candidate[0].regionId);
-		person.partyName = getPartyNameById(candidate[0].partyId);
+		person.firstName = tmp.firstName;
+		person.lastName = tmp.lastName;
+		person.regionName = getRegionNameById(tmp.regionId);
+		person.partyName = getPartyNameById(tmp.partyId);
 
-		if (candidate[0].partyId != 0) {
-		    person.listPosition = candidate[0].listPosition;
+		if (tmp.partyId != 0) {
+		    person.listPosition = tmp.listPosition;
 		} 
 		else {
 		    person.listPosition = "-"; //TODO - #unless abil üldse üksikkandidaatide puhul 
 						//mitte näidata?
 		}
-		person.registrationNr = candidate[0].registrationNr;
+		person.registrationNr = tmp.registrationNr;
 		person.maritalStatus = "TODO";
-		person.phone = candidate[0].phone;
-		person.email = candidate[0].email;
-		person.description = candidate[0].description;
+		person.phone = tmp.phone;
+		person.email = tmp.email;
+		person.description = tmp.description;
 
-		return person;
-	    }
+		return person;	    
+	}
+	else console.log(person);
     }
 };
