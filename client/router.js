@@ -25,7 +25,7 @@ var SeebirakendusRouter = Backbone.Router.extend({
 	    if (urlElements[0] == "erakonna_info") {                       
 		//TODO - siin teha check, et üldse "id" parameeter leiduks
 		//MIDA TEHA SIIS, KUI SEDA POLE?
-                	Session.set("party_info_id", parameters["id"]);		    
+                	Session.set("party_info_id", parseInt(parameters["id"]));
             };
 
 	//see jätta viimaseks reaks, et basepathi normaalselt saaks..

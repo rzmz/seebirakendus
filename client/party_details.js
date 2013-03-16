@@ -1,18 +1,13 @@
 Template.erakonna_info.party = function() {
 
-    var parties = getParties();
+    var tmp = Parties.findOne({cid: Session.get("party_info_id")});
 
-    if (parties) {
-
-        var partyArray = parties.filter(function(el) {
-            return el.cid == Session.get("party_info_id");
-        });
-        //TODO - siia kontroll, kas üldse keegi leiti!
-        //KUI EI, NÄIDATA MINGIT LEHTE ET "SELLIST ERAKONDA EI LEIDU"
+    //loome uue objekti, sest ei taha erakonna andmestikku otseselt muuta / sinna välju lisada hiljem
+    if (tmp) {
 
         var party = {};
-        party.name = partyArray[0].name;
-        party.email = partyArray[0].email;
+        party.name = tmp.name;
+        party.email = tmp.email;
 
         return party;
     }
