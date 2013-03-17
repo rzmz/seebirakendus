@@ -11,7 +11,13 @@
 
 	    <div class="control-group">
               <label class="control-label">Piirkond: {{candidate.regionName}}</label>
-	      <label class="control-label">Erakond: {{candidate.partyName}}</label>
+	      <label class="control-label">Erakond: 
+            	{{#unless candidate.noPartyLink}}
+              		<a href="../erakonna_info?id={{{candidate.partyId}}}">{{candidate.partyName}}</a>
+            	{{else}}
+              		{{candidate.partyName}}
+	    	{{/unless}}			
+		</label>
               <label class="control-label">Koht nimekirjas: {{candidate.listPosition}}</label>
 	      <label class="control-label">Registreerimisnumber: {{candidate.registrationNr}}</label>          
           </div>

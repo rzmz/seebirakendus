@@ -9,14 +9,16 @@ Template.kandidaadi_info.candidate = function() {
 		person.firstName = tmp.firstName;
 		person.lastName = tmp.lastName;
 		person.regionName = getRegionNameById(tmp.regionId);
+		person.partyId = tmp.partyId; 
 		person.partyName = getPartyNameById(tmp.partyId);
 
 		if (tmp.partyId != 0) {
-		    person.listPosition = tmp.listPosition;
+		    person.listPosition = tmp.listPosition;		    
 		} 
 		else {
 		    person.listPosition = "-"; //TODO - #unless abil üldse üksikkandidaatide puhul 
 						//mitte näidata?
+		    person.noPartyLink = true; 
 		}
 		person.registrationNr = tmp.registrationNr;
 		person.maritalStatus = getMaritalStringByState(tmp.maritalStatus);
