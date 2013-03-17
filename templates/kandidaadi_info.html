@@ -1,31 +1,33 @@
 <template name="kandidaadi_info">
+  {{#if candidate}}
+  {{#with candidate}}
   <div class="well">
     <form class="form-horizontal">
       <fieldset>
 
-        <legend>Kandidaat: {{candidate.firstName}} {{candidate.lastName}}</legend>
+        <legend>Kandidaat: {{firstName}} {{lastName}}</legend>
 
         <div class="row">
           <div class="span3">
 
 
 	    <div class="control-group">
-              <label class="control-label">Piirkond: {{candidate.regionName}}</label>
+              <label class="control-label">Piirkond: {{regionName}}</label>
 	      <label class="control-label">Erakond: 
-            	{{#unless candidate.noPartyLink}}
-              		<a href="../erakonna_info?id={{{candidate.partyId}}}">{{candidate.partyName}}</a>
+	      {{#unless noPartyLink}}
+		<a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a></label>
+		<label class="control-label">Koht nimekirjas: {{listPosition}}</label>
             	{{else}}
-              		{{candidate.partyName}}
+              		{{partyName}}</label>
 	    	{{/unless}}			
-		</label>
-              <label class="control-label">Koht nimekirjas: {{candidate.listPosition}}</label>
-	      <label class="control-label">Registreerimisnumber: {{candidate.registrationNr}}</label>          
+		              
+	      <label class="control-label">Registreerimisnumber: {{registrationNr}}</label>          
           </div>
 
 	    <div class="control-group">
-              <label class="control-label">Perekonnaseis: {{candidate.maritalStatus}}</label>
-	      <label class="control-label">Telefon: {{candidate.phone}}</label>
-	      <label class="control-label">Epost: {{candidate.email}}</label>
+              <label class="control-label">Perekonnaseis: {{maritalStatus}}</label>
+	      <label class="control-label">Telefon: {{phone}}</label>
+	      <label class="control-label">Epost: {{email}}</label>
           </div>
           
           <div class="span3">
@@ -41,11 +43,13 @@
         <div class="control-group">
           <label class="control-label" for="inputDescription">Kirjeldus</label>
           <div class="controls">
-            <textarea id="inputDescription" style="width: 80%; height: 180px;" placeholder="{{candidate.description}}"></textarea>
+            <textarea id="inputDescription" style="width: 80%; height: 180px;" placeholder="{{description}}"></textarea>
           </div>
         </div>
 
       </fieldset>  
     </form>
   </div>
+  {{/with}}
+  {{/if}}
 </template>

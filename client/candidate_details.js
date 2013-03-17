@@ -16,8 +16,6 @@ Template.kandidaadi_info.candidate = function() {
 		    person.listPosition = tmp.listPosition;		    
 		} 
 		else {
-		    person.listPosition = "-"; //TODO - #unless abil üldse üksikkandidaatide puhul 
-						//mitte näidata?
 		    person.noPartyLink = true; 
 		}
 		person.registrationNr = tmp.registrationNr;
@@ -28,6 +26,5 @@ Template.kandidaadi_info.candidate = function() {
 
 		return person;	    
 	}
-	else console.log(person);
     }
 };
