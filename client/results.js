@@ -52,7 +52,8 @@ Template.tulemused.parties = function () {
 		for (var i = 0; i < parties.length; i++) {
 		    var tmpPar = {};
 		    tmpPar.cid = parties[i].cid;
-			    tmpPar.name = parties[i].name;
+		    tmpPar.name = parties[i].name;
+		    if (parties[i].cid == 0) tmpPar.noPartyLink = true; 
 		    tmpPar.votes = getVotesByPartyId(parties[i].cid);
 		    tmpPar.mandates = getMandatesByPartyId(parties[i].cid);
 		    ret.push(tmpPar);

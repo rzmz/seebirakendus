@@ -22,6 +22,7 @@ set_nimekirjad_candidates = function() {
 	    tmpPer.partyId = persons[i].partyId; 
             tmpPer.regionName = getRegionNameById(persons[i].regionId);
             tmpPer.partyName = getPartyNameById(persons[i].partyId);
+	    if (persons[i].partyId == 0) tmpPer.noPartyLink = true; 
     
             //filterdame nime järgi
     

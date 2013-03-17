@@ -56,7 +56,7 @@
               <a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a>
             {{else}}
               {{partyName}}
-	          {{/unless}}
+	    {{/unless}}
           </td>
           <td>{{votes}}</td>
       </tr>
@@ -75,7 +75,11 @@
     <tbody>
         {{#each parties}}
       <tr>
-        <td><a href="../erakonna_info?id={{{cid}}}">{{name}}</a></td>      
+        {{#unless noPartyLink}}
+          <td><a href="../erakonna_info?id={{{cid}}}">{{name}}</a></td>
+        {{else}}
+          <td>{{name}}</td>
+        {{/unless}}
         <td>{{votes}}</td>
         <td>{{mandates}}</td>      
       </tr>

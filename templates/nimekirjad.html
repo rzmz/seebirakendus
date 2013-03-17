@@ -35,7 +35,13 @@
           <td><a href="../kandidaadi_info?id={{{cid}}}">{{firstName}}</a></td>
           <td><a href="../kandidaadi_info?id={{{cid}}}">{{lastName}}</a></td>
           <td>{{regionName}}</td>
-	  <td><a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a></td>          
+          <td>
+            {{#unless noPartyLink}}
+              <a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a>
+            {{else}}
+              {{partyName}}
+	    {{/unless}}
+          </td>        
           {{#if currentUser}}
             <td><a href="#">Hääleta!</a></td>        
           {{/if}}
