@@ -19,7 +19,7 @@ Template.kandidaadi_info.candidate = function() {
 						//mitte näidata?
 		}
 		person.registrationNr = tmp.registrationNr;
-		person.maritalStatus = "TODO";
+		person.maritalStatus = getMaritalStringByState(tmp.maritalStatus);
 		person.phone = tmp.phone;
 		person.email = tmp.email;
 		person.description = tmp.description;

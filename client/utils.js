@@ -80,6 +80,17 @@ var getMandatesByPartyId = function(partyId) {
 
 }
 
+//tagastab "abielus/vallaline" state väärtusest lähtuvalt
+var getMaritalStringByState = function(state) {
+	
+	//igaks juhuks castime intiks
+	state = parseInt(state);
+	
+	if (state == 0) return "Vallaline";
+	else if (state == 1) return "Abielus";
+	else return "N/A"; //wat
+}
+
 var btn_spinner_opts = {
     lines: 10, // The number of lines to draw
     length: 5, // The length of each line
