@@ -46,6 +46,11 @@ Template.nimekirjad.listLoading = function() {
 	return Session.get("candidates_list_loading");
 };
 
+Template.nimekirjad.currentSearchValue = function() {
+	if (!Session.get("nimekirjad_candidates_searched_name")) return "";
+        else return Session.get("nimekirjad_candidates_searched_name");
+};
+
 Template.nimekirjad.candidates = function() {
 	//hack me baby one more time	
 
