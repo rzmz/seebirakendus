@@ -4,8 +4,28 @@
     <form id="search-form" class="form-search" method="post">
       <input id="searchfield" class="span2" id="appendedInputButton" type="text" value={{currentSearchValue}}>
       <button id="search-btn" class="btn" type="button">Otsi</button>
-    </form>
+    </form>    
   </div>
+
+<div class="control-group">
+    <p class="pull-left">Otsingu parameetrid:</p>
+    <div class="controls span2">
+        <label class="checkbox">
+            <input type="checkbox" id="firstName_checkbox" 
+		{{#if currentSearchFirstNameEnabled}}checked{{/if}}>Eesnimi</label>
+        <label class="checkbox">
+            <input type="checkbox" id="lastName_checkbox"
+		{{#if currentSearchLastNameEnabled}}checked{{/if}}>Perenimi</label>
+    </div>
+    <div class="controls span2">
+        <label class="checkbox">
+            <input type="checkbox" id="region_checkbox"
+		{{#if currentSearchRegionEnabled}}checked{{/if}}>Piirkond</label>
+        <label class="checkbox">
+            <input type="checkbox" id="party_checkbox"
+		{{#if currentSearchPartyEnabled}}checked{{/if}}>Erakond</label>
+    </div>
+</div>
 
   {{#if currentUser}}
     <div class="alert alert-block">

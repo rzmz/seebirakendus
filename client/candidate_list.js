@@ -1,4 +1,5 @@
 Session.set("candidates_list_loading", false);
+Session.set("nimekirjad_current_search_first_name_enabled", true);
 var nimekirjad_candidates;
 
 
@@ -26,7 +27,7 @@ set_nimekirjad_candidates = function() {
     
             //filterdame nime järgi
     
-            var searched_name = Session.get("nimekirjad_candidates_searched_name");
+            var searched_name = Session.get("nimekirjad_candidates_search_query");
             if (searched_name) {
                 //trim() võib olla..?
                 var full_name = (tmpPer.firstName + " " + tmpPer.lastName)
@@ -44,11 +45,6 @@ set_nimekirjad_candidates = function() {
 
 Template.nimekirjad.listLoading = function() {
 	return Session.get("candidates_list_loading");
-};
-
-Template.nimekirjad.currentSearchValue = function() {
-	if (!Session.get("nimekirjad_candidates_searched_name")) return "";
-        else return Session.get("nimekirjad_candidates_searched_name");
 };
 
 Template.nimekirjad.candidates = function() {
@@ -71,8 +67,18 @@ Template.nimekirjad.events({
         
         // todo: removes settimeout after demo
         window.setTimeout(function(){
-            var query = $('#searchfield').val().trim().toLowerCase();
-            Session.set("nimekirjad_candidates_searched_name", query);
+            var query = $('#searchfield').val().trim().toLowerCase();	    
+            Session.set("nimekirjad_candidates_search_query", query);
+
+	    Session.set("nimekirjad_current_search_first_name_enabled", 
+		$('#firstName_checkbox').is(':checked'));
+	    Session.set("nimekirjad_current_search_last_name_enabled", 
+		$('#lastName_checkbox').is(':checked'));
+	    Session.set("nimekirjad_current_search_region_enabled", 
+		$('#region_checkbox').is(':checked'));   	    
+	    Session.set("nimekirjad_current_search_party_enabled", 
+		$('#party_checkbox').is(':checked'));	    
+	
             set_nimekirjad_candidates();
             //console.log(query);
             spinner.stop();
@@ -81,3 +87,24 @@ Template.nimekirjad.events({
         //ecmascript 5, oot mis brausereid me toetama pidimegi..?
     }
 });
+
+Template.nimekirjad.currentSearchValue = function() {
+	if (!Session.get("nimekirjad_candidates_search_query")) return "";
+        else return Session.get("nimekirjad_candidates_search_query");
+};
+
+Template.nimekirjad.currentSearchFirstNameEnabled = function() {
+	return Session.get("nimekirjad_current_search_first_name_enabled");
+};
+
+Template.nimekirjad.currentSearchLastNameEnabled = function() {
+	return Session.get("nimekirjad_current_search_first_last_enabled");
+};
+
+Template.nimekirjad.currentSearchRegionEnabled = function() {
+	return Session.get("nimekirjad_current_search_region_enabled");
+};
+
+Template.nimekirjad.currentSearchPartyEnabled = function() {
+	return Session.get("nimekirjad_current_search_party_enabled");
+};
