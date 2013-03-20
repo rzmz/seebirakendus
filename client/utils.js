@@ -109,13 +109,19 @@ var btn_spinner_opts = {
     left: '0' // Left position relative to parent in px
 };
 
-var setError = function(message) {
-    $('#select-region-label').addClass("error");
+var setError = function(message, $element) {
+    if($element !== undefined){
+        $element.addClass('error');        
+    }
     $('#alert-messages').html(message);
     $('#alert-messages').removeClass('alert-info');
     $('#alert-messages').addClass('alert-error');
 };
 
-var clearError = function(){
-    $('#alert-messages').hide();
+var clearError = function($element){
+    $element.removeClass("error");
 };
+
+var clearAllErrors = function(){
+    $('#alert-messages').hide();
+}

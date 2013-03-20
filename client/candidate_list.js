@@ -104,11 +104,10 @@ Template.nimekirjad.events({
         var searchValue = $searchField.val().trim();
         if(searchValue.length == 0 && !isReset) {
             setError('Otsinguväli on tühi!');
-            $searchField.focus();
             return;
         }
         if(isReset) {           
-            clearError();
+            clearAllErrors();
             isReset = false;
         }
         var button = document.getElementById('search-btn');

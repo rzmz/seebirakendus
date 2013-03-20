@@ -16,8 +16,15 @@ body {
   width:90%; 
   height:60%; 
 }
+
 #errors {
-    color:red;
+  color: red;
+}
+
+.error {
+  color: white !important;
+  border: 1px solid #DC143C !important;
+  padding: 12px;
 }
 
 #search-form {

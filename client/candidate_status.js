@@ -9,24 +9,32 @@ Template.kandidatuuri_staatus.parties = function() {
 Template.kandidatuuri_staatus.events = {
     'submit #candidacy-apply-form': function(e){
         e.preventDefault();
-        var isError = false;
+        var regionError = false;
+        var partyError = false;
         // validate
         $selected_region = $('#selected-region');
         $selected_party = $('#selected-party');
         if($selected_region.val() == ''){
-            setError('Valimisringkond on valimata!');
-            isError = true;
+            setError('Valimisringkond on valimata!', $('#select-region-label').parent());
+            regionError = true;
         }
         if($selected_party.val() == ''){
-            setError('Erakond on valimata!');
-            isError = true;
+            setError('Erakond on valimata!', $('#select-party-label').parent());
+            partyError = true;
         }
         if($selected_region.val() == '' && $selected_party.val() == ''){
             setError('Valimisringkond ja erakond on valimata!');
-            isError = true;
+            regionError = true;
+            partyError = true;
         }
-        if(!isError){
-            clearError();
+        if(!regionError){
+            clearError($('#select-region-label').parent());            
+        }
+        if(!partyError){
+            clearError($('#select-party-label').parent());
+        }
+        if(!regionError && !partyError){
+            clearAllErrors();
         }
     }
 };
