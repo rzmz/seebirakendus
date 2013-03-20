@@ -6,27 +6,38 @@ Template.kandidatuuri_staatus.parties = function() {
     return getParties();
 }
 
+var setError = function(message) {
+    $('#select-region-label').addClass("error");
+    $('#alert-messages').html(message);
+    $('#alert-messages').removeClass('alert-info');
+    $('#alert-messages').addClass('alert-error');
+}
+
+var clearError = function(){
+    $('#alert-messages').hide();
+}
+
 Template.kandidatuuri_staatus.events = {
     'submit #candidacy-apply-form': function(e){
         e.preventDefault();
-        
+        var isError = false;
         // validate
         $selected_region = $('#selected-region');
         $selected_party = $('#selected-party');
         if($selected_region.val() == ''){
-            $('#select-region-label').css({color: "red"});
-            $('#alert-messages').html('Valimisringkond on valimata');
-            $('#alert-messages').removeClass('alert-info');
-            $('#alert-messages').addClass('alert-error');
+            setError('Valimisringkond on valimata!');
+            isError = true;
         }
         if($selected_party.val() == ''){
-            $('#select-party-label').css({color: "red"});
-            $('#alert-messages').html('Erakond on valimata');
-            $('#alert-messages').removeClass('alert-info');
-            $('#alert-messages').addClass('alert-error');
+            setError('Erakond on valimata!');
+            isError = true;
         }
         if($selected_region.val() == '' && $selected_party.val() == ''){
-            $('#alert-messages').html('Valimisringkond ja erakond on valimata');
+            setError('Valimisringkond ja erakond on valimata!');
+            isError = true;
+        }
+        if(!isError){
+            clearError();
         }
     }
 };
