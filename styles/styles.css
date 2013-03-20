@@ -22,7 +22,7 @@ body {
 }
 
 .error {
-  color: white !important;
+  color: red !important;
   border: 1px solid #DC143C !important;
   padding: 12px;
 }
