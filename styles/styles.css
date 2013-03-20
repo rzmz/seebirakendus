@@ -19,7 +19,11 @@ body {
 #errors {
     color:red;
 }
-#candidate-img {
+
+/* Ma ei tea, mis kaalutlustel alljärgnev siia lisatud on, aga see rikkus kogu kandidaadi vormi 
+  layoudi ja responsivenessi ära kahjuks. */
+
+/*#candidate-img {
     margin-left:100px;
 }
 .navbar .nav li {
@@ -32,4 +36,4 @@ body {
 .form-horizontal .control-label {
     width:250px;
     text-align:center;
-}
+}*/
