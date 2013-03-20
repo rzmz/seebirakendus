@@ -20,6 +20,14 @@ body {
     color:red;
 }
 
+#search-form {
+  margin-bottom: 0 !important;
+}
+
+#search-form input[type=checkbox]{
+  display: none;
+}
+
 /* Ma ei tea, mis kaalutlustel alljärgnev siia lisatud on, aga see rikkus kogu kandidaadi vormi 
   layoudi ja responsivenessi ära kahjuks. */
 

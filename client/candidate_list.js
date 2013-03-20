@@ -87,30 +87,59 @@ Template.nimekirjad.candidates = function() {
 	};
 };
 
+var isReset = false;
+
+var commenceSearch = function(e){
+    
+};
+
+Template.nimekirjad.rendered = function(){
+};
+
 Template.nimekirjad.events({
     'submit #search-form, click #search-btn': function(e) {
-        e.preventDefault();        
+        e.preventDefault();
+        e.stopPropagation();
+        var $searchField = $('#searchfield');
+        var searchValue = $searchField.val().trim();
+        if(searchValue.length == 0 && !isReset) {
+            setError('Otsinguväli on tühi!');
+            $searchField.focus();
+            return;
+        }
+        if(isReset) {           
+            clearError();
+            isReset = false;
+        }
         var button = document.getElementById('search-btn');
         var spinner = new Spinner(btn_spinner_opts).spin(button);
         
-        // todo: removes settimeout after demo
+        // todo: remove settimeout after demo
         window.setTimeout(function(){
             var query = $('#searchfield').val().trim().toLowerCase();	    
             Session.set("nimekirjad_candidates_search_query", query);
-
-	    Session.set("nimekirjad_current_search_first_name_enabled", 
-		$('#firstName_checkbox').is(':checked'));
-	    Session.set("nimekirjad_current_search_last_name_enabled", 
-		$('#lastName_checkbox').is(':checked'));
-	    Session.set("nimekirjad_current_search_region_enabled", 
-		$('#region_checkbox').is(':checked'));   	    
-	    Session.set("nimekirjad_current_search_party_enabled", 
-		$('#party_checkbox').is(':checked'));	    
-	
+            Session.set("nimekirjad_current_search_first_name_enabled", $('#firstName_checkbox').is(':checked'));
+            Session.set("nimekirjad_current_search_last_name_enabled", $('#lastName_checkbox').is(':checked'));
+            Session.set("nimekirjad_current_search_region_enabled", $('#region_checkbox').is(':checked'));
+            Session.set("nimekirjad_current_search_party_enabled", $('#party_checkbox').is(':checked'));
             spinner.stop();
         }, 1000);
         //TODO - esimese asjana kustuta kõik väärtused..
         //ecmascript 5, oot mis brausereid me toetama pidimegi..?
+    },
+    'click button.reset': function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if($('#searchfield').val().trim().length > 0){
+            isReset = true;
+            $('#searchfield').val("");
+            $('#search-btn').trigger('click');            
+        }
+    },
+    'click .filter button': function(e){
+        var checkbox_id = $(e.target).attr('data-click');
+        $("#" + checkbox_id).trigger('click');
+        $(e.target).toggleClass("active");
     }
 });
 

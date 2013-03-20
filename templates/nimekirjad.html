@@ -1,31 +1,27 @@
 <template name="nimekirjad">
   
-  <div class="input-append noprint">
-    <form id="search-form" class="form-search" method="post">
-      <input id="searchfield" class="span2" id="appendedInputButton" type="text" value={{currentSearchValue}}>
-      <button id="search-btn" class="btn" type="button">Otsi</button>
-    </form>    
+  <div class="noprint btn-toolbar">    
+    <div class="btn-group">
+        <form id="search-form" class="form-inline form-search" method="get">
+          <input type="checkbox" id="firstName_checkbox" {{#if currentSearchFirstNameEnabled}}checked="checked" {{/if}}/>
+          <input type="checkbox" id="lastName_checkbox" {{#if currentSearchLastNameEnabled}}checked="checked" {{/if}}/>
+          <input type="checkbox" id="region_checkbox" {{#if currentSearchRegionEnabled}}checked="checked" {{/if}}/>
+          <input type="checkbox" id="party_checkbox" {{#if currentSearchPartyEnabled}}checked="checked" {{/if}}/>
+          <input id="searchfield" class="span2" type="text" value="{{currentSearchValue}}" />
+          <button id="search-btn" class="btn" type="button">Otsi</button>
+        </form>
+    </div>
+    <div class="btn-group">
+      <button class="btn reset">Tühjenda</button>
+    </div>
+    <div class="btn-group filter">
+      <button class="btn{{#if currentSearchFirstNameEnabled}} active{{/if}}" data-click="firstName_checkbox">Eesnimi</button>
+      <button class="btn{{#if currentSearchLastNameEnabled}} active{{/if}}" data-click="lastName_checkbox">Perenimi</button>
+      <button class="btn{{#if currentSearchRegionEnabled}} active{{/if}}" data-click="region_checkbox">Piirkond</button>
+      <button class="btn{{#if currentSearchPartyEnabled}} active{{/if}}" data-click="party_checkbox">Erakond</button>
+    </div>
+    </form>
   </div>
-
-<div class="control-group">
-    <p class="pull-left">Otsingu parameetrid:</p>
-    <div class="controls span2">
-        <label class="checkbox">
-            <input type="checkbox" id="firstName_checkbox" 
-		{{#if currentSearchFirstNameEnabled}}checked{{/if}}>Eesnimi</label>
-        <label class="checkbox">
-            <input type="checkbox" id="lastName_checkbox"
-		{{#if currentSearchLastNameEnabled}}checked{{/if}}>Perenimi</label>
-    </div>
-    <div class="controls span2">
-        <label class="checkbox">
-            <input type="checkbox" id="region_checkbox"
-		{{#if currentSearchRegionEnabled}}checked{{/if}}>Piirkond</label>
-        <label class="checkbox">
-            <input type="checkbox" id="party_checkbox"
-		{{#if currentSearchPartyEnabled}}checked{{/if}}>Erakond</label>
-    </div>
-</div>
 
   {{#if currentUser}}
     <div class="alert alert-block">

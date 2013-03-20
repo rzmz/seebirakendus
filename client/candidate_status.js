@@ -6,17 +6,6 @@ Template.kandidatuuri_staatus.parties = function() {
     return getParties();
 }
 
-var setError = function(message) {
-    $('#select-region-label').addClass("error");
-    $('#alert-messages').html(message);
-    $('#alert-messages').removeClass('alert-info');
-    $('#alert-messages').addClass('alert-error');
-}
-
-var clearError = function(){
-    $('#alert-messages').hide();
-}
-
 Template.kandidatuuri_staatus.events = {
     'submit #candidacy-apply-form': function(e){
         e.preventDefault();
