@@ -1,13 +1,15 @@
 Template.page_controller.events = {
     'click ul.nav li a': function (event) {
         event.preventDefault();
-        var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
-        var pathname = reg.exec(event.currentTarget.href)[1];
+        // var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
+        // var pathname = reg.exec(event.currentTarget.href)[1];
+        var pathname = event.currentTarget.href;
+        pathname = pathname.replace(Meteor.absoluteUrl(), '');
         Router.navigate(pathname);
         
         var $container = $('#pageMainContent');
         $container.fadeOut(200, function(e){
-            $(this).html(get_template(pathname.replace('/', '')));
+            $(this).html(get_template(pathname));
             $(this).fadeIn(200);
         });
         
@@ -25,7 +27,7 @@ var get_page_index = function(which){
     if (page_index != "" && !Template[page_index]) {
         page_index = 'four_oh_four';
     } else if(page_index == "") {
-        page_index = "kaart"
+        page_index = 'esileht'
     }
     return page_index;    
 }

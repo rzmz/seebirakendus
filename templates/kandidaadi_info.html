@@ -1,55 +1,56 @@
 <template name="kandidaadi_info">
   {{#if candidate}}
-  {{#with candidate}}
-  <div class="well">
-    <form class="form-horizontal">
-      <fieldset>
-
-        <legend>Kandidaat: {{firstName}} {{lastName}}</legend>
-
-        <div class="row">
-          <div class="span3">
-
-
-	    <div class="control-group">
-              <label class="control-label">Piirkond: {{regionName}}</label>
-	      <label class="control-label">Erakond: 
-	      {{#unless noPartyLink}}
-		<a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a></label>
-		<label class="control-label">Koht nimekirjas: {{listPosition}}</label>
-            	{{else}}
-              		{{partyName}}</label>
-	    	{{/unless}}			
-		              
-	      <label class="control-label">Registreerimisnumber: {{registrationNr}}</label>          
+    {{#with candidate}}
+    <div class="details-view">
+      <div class="row">
+        <div class="span2">
+          <img src="images/mayor-quimby.jpeg" class="img-rounded" />
+        </div>
+        <div class="span8">
+          <div class="row">
+            <div class="span8"><h3>{{firstName}} {{lastName}}</h3></div>
           </div>
-
-	    <div class="control-group">
-              <label class="control-label">Perekonnaseis: {{maritalStatus}}</label>
-	      <label class="control-label">Telefon: {{phone}}</label>
-	      <label class="control-label">Epost: {{email}}</label>
+          <div class="row">
+            <div class="span2"><label>Piirkond</label></div>
+            <div class="span6">{{regionName}}</div>
           </div>
-          
-          <div class="span3">
-            <div class="control-group">
-              <label class="control-label">Pilt</label>
-              <div class="controls">
-                <div class="img-rounded" style="width: 130px; height: 130px; background-color: #e0e0e0;"></div>
-                <br />
+          <div class="row">
+            <div class="span2"><label>Erakond:</label></div>
+            <div class="span6">
+              {{#unless noPartyLink}}
+                <a href="../erakonna_info?id={{{partyId}}}">{{partyName}}</a>
+              {{else}}
+                {{partyName}}
+          	  {{/unless}}
+            </div>            
+          </div>
+          <div class="row">
+            <div class="span2">
+      	      <label>Registreerimisnumber</label>              
+            </div>
+            <div class="span6">
+              {{registrationNr}}
             </div>
           </div>
-        </div>
-        
-        <div class="control-group">
-          <label class="control-label" for="inputDescription">Kirjeldus</label>
-          <div class="controls">
-            <textarea id="inputDescription" style="width: 80%; height: 180px;" placeholder="{{description}}"></textarea>
+          <div class="row">
+            <div class="span2"><label>Perekonnaseis</label></div>
+            <div class="span6">{{maritalStatus}}</div>
+          </div>
+          <div class="row">
+            <div class="span2"><label>Telefon</label></div>
+            <div class="span6">{{phone}}</div>
+          </div>
+          <div class="row">
+            <div class="span2"><label>E-post</label></div>
+            <div class="span6">{{email}}</div>
+          </div>
+          <div class="row">
+            <div class="span2"><label>Lisainfo</label></div>
+            <div class="span6">{{description}}</div>
           </div>
         </div>
-
-      </fieldset>  
-    </form>
-  </div>
-  {{/with}}
+      </div>
+    </div>
+    {{/with}}
   {{/if}}
 </template>

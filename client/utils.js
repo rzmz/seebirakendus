@@ -115,6 +115,7 @@ var setError = function(message, $element) {
     }
     $('#alert-messages').html(message);
     $('#alert-messages').removeClass('alert-info');
+    $('#alert-messages').removeClass('disabled');    
     $('#alert-messages').addClass('alert-error');
 };
 
@@ -123,5 +124,5 @@ var clearError = function($element){
 };
 
 var clearAllErrors = function(){
-    $('#alert-messages').hide();
+    $('#alert-messages').addClass('disabled');
 }

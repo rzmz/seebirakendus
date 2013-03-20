@@ -6,12 +6,6 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="span12 noprint" style="text-align: right;">
-        {{loginButtons}}
-      </div>
-    </div>
-    <div class="row"><div class="span1 noprint"><br /></div></div>
-    <div class="row">
       <div class="span12">
         {{> page_controller}}
       </div>
@@ -24,9 +18,7 @@
   {{#constant}}
   {{> menu}}
   {{/constant}}
-  <div id="alert-messages" class="alert alert-info">
-    Sinu kandidatuuritaotlus on esitamata.
-  </div>  
+  <div id="alert-messages" class="alert alert-info disabled"></div>
   <div id="pageMainContent">
     {{{display_page}}}
   </div>
@@ -36,13 +28,11 @@
   <div class="navbar navbar-inverse noprint">
     <div class="navbar-inner">
         <ul id="main-menu" class="nav">
+          <li><a href="/" title="Avaleht"><i class="icon-home icon-white"></i></a></li>
           <li><a href="/tulemused">Tulemused</a></li>
           <li><a href="/nimekirjad">Nimekirjad</a></li>
           <li><a href="/kandidatuur">Kandidatuur</a></li>
           <li><a href="/kaart">Kaart</a></li>
-        </ul>
-        <ul class="nav pull-right">
-          <li><a href="/test">Test</a></li>
         </ul>
       </div>
     </div>

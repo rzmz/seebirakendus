@@ -35,6 +35,15 @@ body {
   display: none;
 }
 
+.disabled {
+  display: none;
+}
+
+.details-view label {
+  font-weight: bold;
+  text-align: right;
+}
+
 /* Ma ei tea, mis kaalutlustel alljärgnev siia lisatud on, aga see rikkus kogu kandidaadi vormi 
   layoudi ja responsivenessi ära kahjuks. */
 
