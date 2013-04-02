@@ -8,7 +8,7 @@
           <input type="checkbox" id="region_checkbox" {{#if currentSearchRegionEnabled}}checked="checked" {{/if}}/>
           <input type="checkbox" id="party_checkbox" {{#if currentSearchPartyEnabled}}checked="checked" {{/if}}/>
           <div class="input-append">
-            <input id="searchfield" type="text" value="{{currentSearchValue}}" />
+            <input id="searchfield" type="text" autocomplete="off" value="{{currentSearchValue}}" />
             <button id="search-btn" class="btn" type="button">Otsi</button>
           </div>
         </form>
