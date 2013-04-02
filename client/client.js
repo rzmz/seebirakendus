@@ -46,7 +46,6 @@ function decode_HTML (str) {
 }
 
 function encode_HTML (str) {
-	console.log(str);
 	str = str.replace("ä", "%C3%A4");
 	str = str.replace("Ä", "%C3%84");
 	str = str.replace("õ", "%C3%B5");
@@ -55,6 +54,5 @@ function encode_HTML (str) {
 	str = str.replace("Ö", "%C3%96");
 	str = str.replace("ü", "%C3%BC");
 	str = str.replace("Ü", "%C3%9C");
-	console.log(str);
         return str; 
 }
