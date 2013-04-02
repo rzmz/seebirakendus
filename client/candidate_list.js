@@ -112,6 +112,7 @@ Template.nimekirjad.rendered = function(){
 				return $('#searchfield').typeahead({    		
 					source: names,
 					matcher: function(item) {
+						if (this.query.length < 2) return false;
 
 			//kui pole ees- ja perenimi valitud siis ei paku midagi.
 						if (
