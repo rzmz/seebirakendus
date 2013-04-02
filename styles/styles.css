@@ -43,6 +43,11 @@ body {
   font-weight: bold;
   text-align: right;
 }
+.notReal {
+  color:#DC143C;
+  font-weight: bold;
+  float: left;
+}
 
 /* Ma ei tea, mis kaalutlustel alljärgnev siia lisatud on, aga see rikkus kogu kandidaadi vormi 
   layoudi ja responsivenessi ära kahjuks. */
