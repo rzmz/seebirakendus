@@ -28,3 +28,33 @@ Template.kandidaadi_vorm.currentUserName = function() {
 Template.kaart.rendered = function(){
     loadMapScript();
 };
+
+//proovisin miljardit muud asja, see oli lõppkokkuvõttes parim lahendus. tegelt ka.
+//issand kui piinlik.	
+function decode_HTML (str) {
+
+	str = str.replace("%C3%A4", "ä");
+	str = str.replace("%C3%84", "Ä");
+	str = str.replace("%C3%B5", "õ");
+	str = str.replace("%C3%95", "Õ");
+	str = str.replace("%C3%B6", "ö");
+	str = str.replace("%C3%96", "Ö");
+	str = str.replace("%C3%BC", "ü");
+	str = str.replace("%C3%9C", "Ü");
+
+        return str; 
+}
+
+function encode_HTML (str) {
+	console.log(str);
+	str = str.replace("ä", "%C3%A4");
+	str = str.replace("Ä", "%C3%84");
+	str = str.replace("õ", "%C3%B5");
+	str = str.replace("Õ", "%C3%95");
+	str = str.replace("ö", "%C3%B6");
+	str = str.replace("Ö", "%C3%96");
+	str = str.replace("ü", "%C3%BC");
+	str = str.replace("Ü", "%C3%9C");
+	console.log(str);
+        return str; 
+}
