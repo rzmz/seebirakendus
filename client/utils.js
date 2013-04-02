@@ -126,3 +126,22 @@ var clearError = function($element){
 var clearAllErrors = function(){
     $('#alert-messages').addClass('disabled');
 }
+
+
+
+
+//proovisin miljardit muud asja, see oli lõppkokkuvõttes parim lahendus. tegelt ka.
+//issand kui piinlik.	
+function decode_HTML (str) {
+
+	str = str.replace("%C3%A4", "ä");
+	str = str.replace("%C3%84", "Ä");
+	str = str.replace("%C3%B5", "õ");
+	str = str.replace("%C3%95", "Õ");
+	str = str.replace("%C3%B6", "ö");
+	str = str.replace("%C3%96", "Ö");
+	str = str.replace("%C3%BC", "ü");
+	str = str.replace("%C3%9C", "Ü");
+
+        return str; 
+}
