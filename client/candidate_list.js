@@ -100,10 +100,27 @@ Template.nimekirjad.rendered = function(){
 			var names = [];			
 			for (var i = 0; i < tmpPersons.length; i++) {
 				names.push(tmpPersons[i].lastName + ", " + tmpPersons[i].firstName);
+				names.push(tmpPersons[i].firstName + " " + tmpPersons[i].lastName);
 			};
-			console.log(names);
 			return Meteor.defer(function () {				
-				return $('#searchfield').typeahead({source: names});
+				return $('#searchfield').typeahead({    		
+					source: names,
+					matcher: function(item) {
+						var fullname = item.trim().toLowerCase();
+						var query = this.query.trim().toLowerCase();
+						if (fullname.indexOf(query) == 0) {	
+							return true;
+							};
+
+					        return false;
+						},
+   					highlighter: function(item){
+						len = this.query.trim().length;
+					        return "<div><strong>" +
+							item.substring(0,len) + "</strong>" +
+							item.substring(len) + "</div>";
+						}					
+					});
 		        });
 		};
 	};
