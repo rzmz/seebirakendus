@@ -94,6 +94,19 @@ var commenceSearch = function(e){
 };
 
 Template.nimekirjad.rendered = function(){
+	if (personsReady) {
+		var tmpPersons = Persons.find({}).fetch();
+		if (tmpPersons) {
+			var names = [];			
+			for (var i = 0; i < tmpPersons.length; i++) {
+				names.push(tmpPersons[i].lastName + ", " + tmpPersons[i].firstName);
+			};
+			console.log(names);
+			return Meteor.defer(function () {				
+				return $('#searchfield').typeahead({source: names});
+		        });
+		};
+	};
 };
 
 Template.nimekirjad.events({
