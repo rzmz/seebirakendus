@@ -29,10 +29,12 @@ Template.kaart.rendered = function(){
     loadMapScript();
 };
 
-//proovisin miljardit muud asja, see oli lõppkokkuvõttes parim lahendus. tegelt ka.
+//proovisin miljardit muud asja, see oli lõppkokkuvõttes parim saadaolev lahendus. tegelt ka.
 //issand kui piinlik.	
+//brauserid võiks ära otsustada mis encodingut nad kasutavad. jerks. 
 function decode_HTML (str) {
-
+	str = str.trim();
+	str = str.replace("%20", " ");
 	str = str.replace("%C3%A4", "ä");
 	str = str.replace("%C3%84", "Ä");
 	str = str.replace("%C3%B5", "õ");
@@ -46,6 +48,8 @@ function decode_HTML (str) {
 }
 
 function encode_HTML (str) {
+	str = str.trim();
+	str = str.replace(" ", "%20");
 	str = str.replace("ä", "%C3%A4");
 	str = str.replace("Ä", "%C3%84");
 	str = str.replace("õ", "%C3%B5");

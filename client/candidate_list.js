@@ -25,7 +25,14 @@ Template.nimekirjad.candidates = function() {
 			if (query.indexOf(" ") > 0 &&
 			    Session.get("nimekirjad_current_search_first_name_enabled") &&	
 			    Session.get("nimekirjad_current_search_last_name_enabled")) {
-			    
+
+				//"Mägi, Aivar" (autocomplete abil nt)
+				if (query.indexOf(",") > 0) {
+					var switchedNameArray = query.split(",");
+				    	query = switchedNameArray[1].trim() + " " +
+						   switchedNameArray[0].trim();
+				};
+
 				var fullname = (persons[i].firstName + " " + persons[i].lastName)
 						.trim().toLowerCase();
 				if (fullname.indexOf(query) >= 0) 				
@@ -108,7 +115,7 @@ Template.nimekirjad.rendered = function(){
 
 			//kui pole ees- ja perenimi valitud siis ei paku midagi.
 						if (
-			!Session.get("nimekirjad_current_search_first_name_enabled") &&
+			!Session.get("nimekirjad_current_search_first_name_enabled") ||
 			!Session.get("nimekirjad_current_search_last_name_enabled"))
 						return false;
            
