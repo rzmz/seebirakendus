@@ -16,6 +16,9 @@ Meteor.startup(function () {
     Meteor.subscribe("persons", function() {personsReady = true});
     Meteor.subscribe("regions", function() {regionsReady = true});
     Meteor.subscribe("parties", function() {partiesReady = true});
+
+    Session.set("nimekirjad_current_search_first_name_enabled", true);
+    Session.set("nimekirjad_current_search_last_name_enabled", true);
 });
 
 Template.kandidaadi_vorm.currentUserName = function() {

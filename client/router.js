@@ -28,6 +28,17 @@ var SeebirakendusRouter = Backbone.Router.extend({
                 	Session.set("party_info_id", parseInt(parameters["id"]));
             };
 
+/*
+    Session.set("nimekirjad_current_search_first_name_enabled", true);
+    Session.set("nimekirjad_current_search_last_name_enabled", true);
+
+ Session.get("nimekirjad_current_search_region_enabled")) 
+Session.get("nimekirjad_candidates_search_query");
+      Session.get("nimekirjad_current_search_party_enabled")
+*/
+
+
+
 	//see jätta viimaseks reaks, et basepathi normaalselt saaks..
 	url_path = urlElements[0];
     };            

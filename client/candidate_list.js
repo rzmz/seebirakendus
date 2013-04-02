@@ -1,5 +1,4 @@
-Session.set("nimekirjad_current_search_first_name_enabled", true);
-Session.set("nimekirjad_current_search_last_name_enabled", true);
+
 
 Template.nimekirjad.candidates = function() { 
 	//hack me baby one more time	
