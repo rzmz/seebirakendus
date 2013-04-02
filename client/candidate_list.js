@@ -150,6 +150,7 @@ Template.nimekirjad.events({
             Session.set("nimekirjad_current_search_last_name_enabled", $('#lastName_checkbox').is(':checked'));
             Session.set("nimekirjad_current_search_region_enabled", $('#region_checkbox').is(':checked'));
             Session.set("nimekirjad_current_search_party_enabled", $('#party_checkbox').is(':checked'));
+	    Router.navigateTo("tulemused");
             spinner.stop();
         }, 1000);
         //TODO - esimese asjana kustuta kõik väärtused..

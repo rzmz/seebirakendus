@@ -1,7 +1,10 @@
 var SeebirakendusRouter = Backbone.Router.extend({
     routes: {
         "*path": "main"
-    },
+    	},    
+    navigateTo: function(path) {
+	this.navigate(path);
+	},
     main: function(url_path){            
         var urlElements = url_path.split("?");
              

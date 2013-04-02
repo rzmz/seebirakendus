@@ -145,3 +145,17 @@ function decode_HTML (str) {
 
         return str; 
 }
+
+function encode_HTML (str) {
+
+	str = str.replace("ä", "%C3%A4");
+	str = str.replace("A", "%C3%84");
+	str = str.replace("õ", "%C3%B5");
+	str = str.replace("Õ", "%C3%95");
+	str = str.replace("ö", "%C3%B6");
+	str = str.replace("Ö", "%C3%96");
+	str = str.replace("ü", "%C3%BC");
+	str = str.replace("Ü", "%C3%9C");
+
+        return str; 
+}
