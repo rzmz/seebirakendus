@@ -36,15 +36,26 @@ Template.kandidatuuri_staatus.events = {
         if(!regionError && !partyError){
             clearAllErrors();
             if(!Session.get("candidate_error")){
+                var fullName = Session.get("candidate_name").split(" ");
+                var newId = getPersons().length
                 var properties = {
-                    name:Session.get("candidate_name"),
+                    cid:newId+1,
+                    firstName:fullName[0],
+                    lastName:fullName[1],
+                    regionId:parseInt($selected_region.val()),
+                    votedCandidateId:0,
+                    votes:0,
+                    candidateStatus:1,
+                    registrationNr:newId+1,
+                    partyId:parseInt($selected_party.val()),
+                    listPosition:0,
                     phone:Session.get("candidate_phone"),
                     email:Session.get("candidate_email"),
-                    description:Session.get("candidate_desc"),
-                    region:$selected_region.val(),
-                    party:$selected_party.val()
+                    maritalStatus:parseInt(Session.get("candidate_marital")),
+                    description:Session.get("candidate_desc")
                 };
-                //TODO: ACTUALLY SUBMIT THIS STUFF TO THE SERVER!
+                Persons.insert(properties);
+                setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
             } else {
                 setError('Allpool olevad väljad on täitmata!');
             }

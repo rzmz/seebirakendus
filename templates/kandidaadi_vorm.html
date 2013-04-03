@@ -1,7 +1,8 @@
 <template name="kandidaadi_vorm">
   <div class="well">
     <div id="errors"></div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="candidacy-data">
+        <input type="hidden" id="selected-marital" value="1"/>
       <fieldset>
         <legend>Isikuandmed</legend>
         <div class="row">
@@ -16,16 +17,16 @@
             <div class="control-group">
               <label class="control-label" for="inputFamily">Perekonnaseis</label>
               <div class="controls">
-                <div class="btn-group">
-                  <button class="btn">Vallaline</button>
+                <div class="btn-group" id="marital-dropdown">
+                  <button class="btn dropdown-label">Vallaline</button>
                   <button class="btn dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="#">Vallaline</a></li>
-                    <li><a tabindex="-1" href="#">Abielus</a></li>
-                    <li><a tabindex="-1" href="#">Lahutatud</a></li>
-                    <li><a tabindex="-1" href="#">"It's complicated!"</a></li>
+                    <li><a id="m1" data-cid="{{cid}}" tabindex="{{cid}}">Vallaline</a></li>
+                    <li><a id="m2" data-cid="{{cid}}" tabindex="{{cid}}">Abielus</a></li>
+                    <li><a id="m3" data-cid="{{cid}}" tabindex="{{cid}}">Lahutatud</a></li>
+                    <li><a id="m4" data-cid="{{cid}}" tabindex="{{cid}}">"It's complicated!"</a></li>
                   </ul>
                 </div>
               </div>

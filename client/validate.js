@@ -48,10 +48,20 @@
         Session.set("candidate_email", email);
         Session.set("candidate_desc", desc);
         Session.set("candidate_name", $('#candidateName').val());
+        Session.set("candidate_marital", desc);
         Session.set("candidate_error", false);
+        Session.set("candidate_marital", $('#selected-marital').val());
   }
   document.getElementById("inputPhone").value = phone;
   document.getElementById("inputEmail").value = email;
   document.getElementById("inputDescription").value = desc;
+}
+
+Template.kandidaadi_vorm.rendered = function(){
+    $('#marital-dropdown .dropdown-menu li a').click(function(evt){
+        $('#marital-dropdown').find('button.dropdown-label').html($(this).html());
+        $('#selected-marital').val(evt.target.id.split("m")[1]);
+        Session.set("candidate_marital", $('#selected-marital').val());
+    });
 }
 

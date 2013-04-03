@@ -1,5 +1,7 @@
 <template name="kandidatuuri_staatus">
+    
   <div class="well">
+      {{#with post}}
     <form class="form-horizontal" id="candidacy-apply-form">
       <input type="hidden" id="selected-region" />
       <input type="hidden" id="selected-party" />
@@ -15,7 +17,7 @@
                 </button>
                 <ul class="dropdown-menu">
                   {{#each regions}}
-                    <li><a data-cid="{{cid}}" tabindex="{{cid}}" href="#">{{name}}</a></li>
+                    <li><a data-cid="{{cid}}" tabindex="{{cid}}">{{name}}</a></li>
                   {{/each}}
                 </ul>
               </div>
@@ -31,7 +33,7 @@
                 </button>
                 <ul class="dropdown-menu">
                   {{#each parties}}
-                    <li><a data-cid="{{cid}}" tabindex="{{cid}}" href="#">{{name}}</a></li>
+                    <li><a data-cid="{{cid}}" tabindex="{{cid}}">{{name}}</a></li>
                   {{/each}}
                 </ul>
               </div>
@@ -44,5 +46,7 @@
           </div>
       </fieldset>
     </form>
+      {{/with}}
   </div>
+    
 </template>
