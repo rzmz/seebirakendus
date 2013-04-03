@@ -116,9 +116,10 @@ Template.nimekirjad.rendered = function(){
 
 			//kui pole ees- ja perenimi valitud siis ei paku midagi.
 						if (
-			!Session.get("nimekirjad_current_search_first_name_enabled") ||
-			!Session.get("nimekirjad_current_search_last_name_enabled"))
-						return false;
+                            !($('#firstName_checkbox').is(':checked')) ||
+                            !($('#lastName_checkbox').is(':checked'))
+                            )
+                        return false;
            
 						var fullname = item.trim().toLowerCase();
 						var query = this.query.trim().toLowerCase();
