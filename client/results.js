@@ -18,24 +18,40 @@ Template.tulemused.candidates = function () {
 
     if (partiesReady && regionsReady && personsReady) {
 	    //TODO - teha mingi ühine meetod kandidaadiinfo saamiseks
+            var selectedFilterValue = Session.get("selected_region");
 	    var persons = getPersons();
 	    if (persons) {
 		var ret = [];
 
 		for (var i = 0; i < persons.length; i++) {
-		    var tmpPer = {};
-		    tmpPer.cid = persons[i].cid;
-		    tmpPer.firstName = persons[i].firstName;
-		    tmpPer.lastName = persons[i].lastName;
-		    tmpPer.regionName = getRegionNameById(persons[i].regionId);
-		    tmpPer.partyId = persons[i].partyId;
-		    if (persons[i].partyId == 0) tmpPer.noPartyLink = true; 
-		    tmpPer.partyName = getPartyNameById(persons[i].partyId);
-			    tmpPer.votes = persons[i].votes; 
-			    ret.push(tmpPer);
-			};
+                    if(selectedFilterValue >= 0) {
+                        if(persons[i].regionId == selectedFilterValue){
+                            var tmpPer = {};
+                            tmpPer.cid = persons[i].cid;
+                            tmpPer.firstName = persons[i].firstName;
+                            tmpPer.lastName = persons[i].lastName;
+                            tmpPer.regionName = getRegionNameById(persons[i].regionId);
+                            tmpPer.partyId = persons[i].partyId;
+                            if (persons[i].partyId == 0) tmpPer.noPartyLink = true; 
+                            tmpPer.partyName = getPartyNameById(persons[i].partyId);
+                                    tmpPer.votes = persons[i].votes; 
+                                    ret.push(tmpPer);
+                        }
+                    } else {
+                        var tmpPer = {};
+                        tmpPer.cid = persons[i].cid;
+                        tmpPer.firstName = persons[i].firstName;
+                        tmpPer.lastName = persons[i].lastName;
+                        tmpPer.regionName = getRegionNameById(persons[i].regionId);
+                        tmpPer.partyId = persons[i].partyId;
+                        if (persons[i].partyId == 0) tmpPer.noPartyLink = true; 
+                        tmpPer.partyName = getPartyNameById(persons[i].partyId);
+                                tmpPer.votes = persons[i].votes; 
+                                ret.push(tmpPer);
+                    }
+                };
 		
-			return ret;
+                    return ret;
 	    }
     }
 };
@@ -73,6 +89,13 @@ Template.tulemused.rendered = function() {
 
     $('#results_type').find("button[data-type='"+Session.get('results_type')+"']").addClass('active');
 }
+
+Template.tulemused.events({
+    'change #region_select': function(evt) {
+        var filterValue = evt.currentTarget.value;
+        Session.set("selected_region", filterValue);
+    }
+});
 
 Template.tulemused.show_candidates = function(){
     return (Session.get('results_type') == "candidates") ? true : false;

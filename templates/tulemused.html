@@ -1,16 +1,13 @@
 <template name="tulemused">
 
   <div class="pull-right noprint">
-    <div class="btn-group">
-      <button class="btn">Vali piirkond</button>
-      <button class="btn dropdown-toggle" data-toggle="dropdown">
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
+    <div class="btn-group" id="region_filter">
+      <select id="region_select" class="btn">
+        <option value="-1">Vali piirkond</option>
         {{#each regions}}
-        <li><a tabindex="{{cid}}" href="#">{{name}}</a></li>
+        <option value="{{cid}}">{{name}}</option>
         {{/each}}
-      </ul>
+      </select>
     </div>
     <div class="btn-group" id="results_type">
       <button class="btn" data-type="candidates">Kandidaadid</button>
