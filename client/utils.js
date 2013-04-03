@@ -60,13 +60,22 @@ var getPartyNameById = function(partyId) {
 
 var getVotesByPartyId = function(partyId) {
 	var persons = getPersons(); 
+	var selectedFilterValue = Session.get("selected_region");
 	
-	var totalVotes = 0;
-
-	for (var i = 0; i < persons.length; i++) {
-		if (persons[i].partyId == partyId)
-			totalVotes += persons[i].votes;
-	}
+        var totalVotes = 0;
+        if(selectedFilterValue >= 0) {
+            for (var i = 0; i < persons.length; i++) {
+                    if (persons[i].partyId == partyId)
+                        if(persons[i].regionId == selectedFilterValue){
+                            totalVotes += persons[i].votes;
+                        }
+            }
+        } else {
+            for (var i = 0; i < persons.length; i++) {
+                    if (persons[i].partyId == partyId)
+                            totalVotes += persons[i].votes;
+            }
+        }
 
 	return totalVotes; 
 }
