@@ -35,6 +35,19 @@ Template.kandidatuuri_staatus.events = {
         }
         if(!regionError && !partyError){
             clearAllErrors();
+            if(!Session.get("candidate_error")){
+                var properties = {
+                    name:Session.get("candidate_name"),
+                    phone:Session.get("candidate_phone"),
+                    email:Session.get("candidate_email"),
+                    description:Session.get("candidate_desc"),
+                    region:$selected_region.val(),
+                    party:$selected_party.val()
+                };
+                //TODO: ACTUALLY SUBMIT THIS STUFF TO THE SERVER!
+            } else {
+                setError('Allpool olevad väljad on täitmata!');
+            }
         }
     }
 };

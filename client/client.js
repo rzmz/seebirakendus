@@ -19,6 +19,7 @@ Meteor.startup(function () {
 
     Session.set("nimekirjad_current_search_first_name_enabled", true);
     Session.set("nimekirjad_current_search_last_name_enabled", true);
+    Session.set("candidate_error", true);
 });
 
 Template.kandidaadi_vorm.currentUserName = function() {

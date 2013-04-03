@@ -11,7 +11,6 @@
   if(phone.length < 7 ) {
    	incorrect[no] = "1";
    	no++;
-   	phone = "";
   } 
   /*
   else if ((pluspos != 0 && (phone.length < 11 || phone.length > 12) )) {
@@ -26,13 +25,11 @@
   if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length || email.length < 6) {
     incorrect[no] = "2";
     no++;
-    email = "";
   }  
   
   if(desc.length < 3) {
    	incorrect[no] = "3";
    	no++;
-   	desc = "";
   }
    for(i=1;i<4;i++) {
     document.getElementById(i).style.color="#333333";
@@ -44,9 +41,14 @@
 
   if(no > 0) {
    	document.getElementById("errors").innerHTML = "<span class=\"error\">Viga vormi täitmisel. Palun täitke kõik nõutud väljad.</span><br />";
-  }
-  else {
-    document.getElementById("errors").innerHTML = "";
+        Session.set("candidate_error", true);
+  } else {
+        document.getElementById("errors").innerHTML = "";
+        Session.set("candidate_phone", phone);
+        Session.set("candidate_email", email);
+        Session.set("candidate_desc", desc);
+        Session.set("candidate_name", $('#candidateName').val());
+        Session.set("candidate_error", false);
   }
   document.getElementById("inputPhone").value = phone;
   document.getElementById("inputEmail").value = email;
