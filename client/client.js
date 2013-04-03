@@ -2,6 +2,11 @@ Elections = new Meteor.Collection("elections"); //valimiste üldandmed
 Persons = new Meteor.Collection("persons"); //valimiste isikute andmed
 Regions = new Meteor.Collection("regions"); //regioonide andmed
 Parties = new Meteor.Collection("parties"); //erakondade andmed
+Persons.allow({
+            insert: function () { return true; },
+            update: function () { return true; },
+            remove: function () { return true; } 
+          });
 
 //teretulemast meteori antipatternite maailma
 var electionsReady = false;

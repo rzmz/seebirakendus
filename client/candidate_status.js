@@ -54,8 +54,22 @@ Template.kandidatuuri_staatus.events = {
                     maritalStatus:parseInt(Session.get("candidate_marital")),
                     description:Session.get("candidate_desc")
                 };
-                Persons.insert(properties);
-                setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
+                var persons = getPersons();
+                var found = false;
+                if (persons) {
+                    for (var i = 0; i < persons.length; i++) {
+                        if(persons[i].firstName == properties.firstName && persons[i].lastName == properties.lastName) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if(!found){
+                    Persons.insert(properties);
+                    setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
+                } else {
+                    setError("Selline isik on juba olemas!");
+                }
             } else {
                 setError('Allpool olevad väljad on täitmata!');
             }

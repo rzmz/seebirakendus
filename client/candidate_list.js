@@ -192,6 +192,36 @@ Template.nimekirjad.events({
         var checkbox_id = $(e.target).attr('data-click');
         $("#" + checkbox_id).trigger('click');
         $(e.target).toggleClass("active");
+    },
+    'click .vote': function(e){
+        //TODO: Add vote. The following line gets the person ID
+        var clickedId = e.target.id-1;
+        var persons = getPersons();
+        console.log(persons[clickedId].votes);
+        //See ei lisa õigesse kohta!
+        var newVotes = persons[clickedId].votes + 1;
+        //Doing it the hard way:
+        var properties = {
+            cid:persons[clickedId].cid,
+            firstName:persons[clickedId].firstName,
+            lastName:persons[clickedId].lastName,
+            regionId:persons[clickedId].regionId,
+            votedCandidateId:persons[clickedId].votedCandidateId,
+            votes:newVotes,
+            candidateStatus:persons[clickedId].candidateStatus,
+            registrationNr:persons[clickedId].registrationNr,
+            partyId:persons[clickedId].partyId,
+            listPosition:persons[clickedId].listPosition,
+            phone:persons[clickedId].phone,
+            email:persons[clickedId].email,
+            maritalStatus:persons[clickedId].maritalStatus,
+            description:persons[clickedId].description
+        };
+        //This doesn't work either.. wtf
+        Persons.update(persons[clickedId].cid, {$set: properties});
+        console.log(persons[clickedId].votes);
+        // BAAAAAHHHHH!!! NOTHING WORKS! I AM GOING INSANE!
+        //TODO: Hunt down and kill developers of Meteor!
     }
 });
 

@@ -29,7 +29,7 @@
     <div class="alert alert-block">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <h4>Valitud kandidaat</h4>
-      Valitud kandidaat puudub. Enda hääle andmiseks kandidaadile klõpsa allpool olevas nimekirjas sobiva kandidaadi nime järel "HÄÄLETA".
+      <p id="voted_candidate">Valitud kandidaat puudub. Enda hääle andmiseks kandidaadile klõpsa allpool olevas nimekirjas sobiva kandidaadi nime järel "HÄÄLETA".</p>
     </div>
   {{/if}}
   
@@ -60,7 +60,7 @@
 	    {{/unless}}
           </td>        
           {{#if currentUser}}
-            <td><a href="#">Hääleta!</a></td>        
+            <td><a id={{cid}} class="vote">Hääleta!</a></td>        
           {{/if}}
         </tr>
       {{/each}}
