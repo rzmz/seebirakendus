@@ -1,4 +1,4 @@
-var SeebirakendusRouter = Backbone.Router.extend({
+SeebirakendusRouter = Backbone.Router.extend({
     routes: {
         "*path": "main"
     	},    
@@ -68,5 +68,5 @@ var SeebirakendusRouter = Backbone.Router.extend({
     }
 });
 
-var Router = new SeebirakendusRouter();
+Router = new SeebirakendusRouter();
 Backbone.history.start({pushState: true});

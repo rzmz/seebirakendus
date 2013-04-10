@@ -9,10 +9,10 @@ Persons.allow({
           });
 
 //teretulemast meteori antipatternite maailma
-var electionsReady = false;
-var personsReady = false;
-var regionsReady = false;
-var partiesReady = false; 
+electionsReady = false;
+personsReady = false;
+regionsReady = false;
+partiesReady = false; 
 
 
 Meteor.startup(function () {

@@ -93,9 +93,9 @@ Template.nimekirjad.candidates = function() {
 	};
 };
 
-var isReset = false;
+isReset = false;
 
-var commenceSearch = function(e){
+commenceSearch = function(e){
     
 };
 

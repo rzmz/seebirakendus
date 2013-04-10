@@ -1,5 +1,5 @@
 //andmebaasist arrayde saamise funktsioonid
-var getPersons = function() {
+getPersons = function() {
     if (personsReady) {
 	    var cursor = Persons.find({});
 	    if (cursor) {
@@ -10,7 +10,7 @@ var getPersons = function() {
 };
 
 
-var getRegions = function() {
+getRegions = function() {
     if (regionsReady) {
 	    var cursor = Regions.find({});
 	    if (cursor) {
@@ -20,7 +20,7 @@ var getRegions = function() {
     }
 };
 
-var getParties = function() {
+getParties = function() {
     if (partiesReady) {
 	    var cursor = Parties.find({});
 	    if (cursor) {
@@ -31,7 +31,7 @@ var getParties = function() {
 };
 
 //utilityfunktsioonid
-var getRegionNameById = function(regionId) {
+getRegionNameById = function(regionId) {
     var regions = getRegions();
     var regionName = "NO SUCH REGION!";
     
@@ -44,7 +44,7 @@ var getRegionNameById = function(regionId) {
     return regionName;
 };
 
-var getPartyNameById = function(partyId) {
+getPartyNameById = function(partyId) {
     var parties = getParties();
     if (partyId == 0) return "Üksikkandidaat";
         var partyName = "POLE SELLIST ERAKONDA";
@@ -58,7 +58,7 @@ var getPartyNameById = function(partyId) {
     return partyName;
 }
 
-var getVotesByPartyId = function(partyId) {
+getVotesByPartyId = function(partyId) {
 	var persons = getPersons(); 
 	var selectedFilterValue = Session.get("selected_region");
 	
@@ -81,7 +81,7 @@ var getVotesByPartyId = function(partyId) {
 }
 
 //TODO - PLACEHOLDER!
-var getMandatesByPartyId = function(partyId) {
+getMandatesByPartyId = function(partyId) {
 
 	var votes = getVotesByPartyId(partyId);
 	var mandates = Math.floor(votes / 400000 * 100 * 2.2); //wat
@@ -90,7 +90,7 @@ var getMandatesByPartyId = function(partyId) {
 }
 
 //tagastab "abielus/vallaline" state väärtusest lähtuvalt
-var getMaritalStringByState = function(state) {
+getMaritalStringByState = function(state) {
 	
 	//igaks juhuks castime intiks
 	state = parseInt(state);
@@ -100,7 +100,7 @@ var getMaritalStringByState = function(state) {
 	else return "N/A"; //wat
 }
 
-var btn_spinner_opts = {
+btn_spinner_opts = {
     lines: 10, // The number of lines to draw
     length: 5, // The length of each line
     width: 2, // The line thickness
@@ -118,7 +118,7 @@ var btn_spinner_opts = {
     left: '0' // Left position relative to parent in px
 };
 
-var setError = function(message, $element) {
+setError = function(message, $element) {
     if($element !== undefined){
         $element.addClass('error');        
     }
@@ -128,11 +128,11 @@ var setError = function(message, $element) {
     $('#alert-messages').addClass('alert-error');
 };
 
-var clearError = function($element){
+clearError = function($element){
     $element.removeClass("error");
 };
 
-var clearAllErrors = function(){
+clearAllErrors = function(){
     $('#alert-messages').addClass('disabled');
 }
 

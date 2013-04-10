@@ -18,7 +18,7 @@ Template.page_controller.events = {
     }
 };
 
-var get_page_index = function(which){
+get_page_index = function(which){
     var page_index = Session.get('page_id');    
     if(which !== false){
         page_index = which;
@@ -32,7 +32,7 @@ var get_page_index = function(which){
     return page_index;    
 }
 
-var get_template = function(which) {
+get_template = function(which) {
     var page_index = get_page_index(which);
     return Template[page_index]();    
 }
