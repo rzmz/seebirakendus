@@ -5,7 +5,7 @@ Template.nimekirjad.candidates = function() {
 
 	if (personsReady && regionsReady && partiesReady) { 
 	     
-    	    var persons = Persons.find({}).fetch();
+    	    var persons = Persons.find({candidateStatus: 2}).fetch();
 
 	    nimekirjad_candidates = new Meteor.Collection(null);  
 

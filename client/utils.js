@@ -1,7 +1,7 @@
 //andmebaasist arrayde saamise funktsioonid
 getPersons = function() {
     if (personsReady) {
-	    var cursor = Persons.find({});
+	    var cursor = Persons.find({candidateStatus: 2});
 	    if (cursor) {
 		var data = cursor.fetch();
 		return data;		
