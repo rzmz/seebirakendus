@@ -101,7 +101,7 @@ commenceSearch = function(e){
 
 Template.nimekirjad.rendered = function(){
 	if (personsReady) {
-		var tmpPersons = Persons.find({}).fetch();
+		var tmpPersons = Persons.find({candidateStatus: 2}).fetch();
 		if (tmpPersons) {
 			var names = [];			
 			for (var i = 0; i < tmpPersons.length; i++) {
@@ -194,7 +194,7 @@ Template.nimekirjad.events({
         $(e.target).toggleClass("active");
     },
     'click .vote': function(e){
-	Meteor.call('setVote', e.target.id, Meteor.user().profile.name);
+	Meteor.call('setVote', e.target.id);
     }
 });
 

@@ -100,6 +100,9 @@ getMaritalStringByState = function(state) {
 	else return "N/A"; //wat
 }
 
+
+
+
 btn_spinner_opts = {
     lines: 10, // The number of lines to draw
     length: 5, // The length of each line
