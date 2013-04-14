@@ -21,5 +21,13 @@ if (Meteor.isServer) {
   });
     console.log("The Application has started...");
   });
+
+  Meteor.methods({
+
+  setVote: function(candidateCid, voterFullname) {
+	console.log(candidateCid);
+	console.log(voterFullname);
+  }
+  });
 }
 
