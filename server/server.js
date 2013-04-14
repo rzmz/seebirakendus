@@ -24,13 +24,45 @@ if (Meteor.isServer) {
 
   Meteor.methods({
 
+
+  //määrab kandidatuuriinfo
+  //userDao = objekt, kus on kõik muudetud väärtused..
+  setUserCandidateData: function(userDao) {
+	
+  },
+
+  //lisab hääle kandidaadile
   setVote: function(candidateCid) {
 	if (!currentUserExists())
 		createUser();
+  	
+
+	//TODO: kui candidateCid == -1, siis eemaldame (pmst tühistas hääle ära)
+	//TODO: tee nupp selleks candidate_list lehele.. 
+	
+
+	//praeguselt hääletanult võtame hääle maha, juhul kui üldse oli hääli	
+	var previousCandidateId = 
+		parseInt(Persons.findOne({cid: Meteor.user().profile.cid}).votedCandidateId);	
+	if (previousCandidateId) {
+		var previousVotes = Persons.findOne({cid: previousCandidateId}).votes;
+		Persons.update({cid: previousCandidateId}, 
+			{$set:{"votes": previousVotes - 1}});
+	}
+
+	//muudame hääletaja "voted for" vms väärtust..
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"votedCandidateId": candidateCid}});	
+
+	//uuele paneme hääle juurde
+	candidateCid = parseInt(candidateCid);
+	var newVotes = Persons.findOne({cid: candidateCid}).votes;	
+	Persons.update({cid: candidateCid}, 
+		{$set:{"votes": newVotes + 1}});
   	}
   });
 
-  
+  //kui praegune user juba on Persons tabelis (full name unikaalne!)
   currentUserExists = function() {
 
 	if (Meteor.user().profile.cid) 
@@ -54,6 +86,7 @@ if (Meteor.isServer) {
 	}	
   };
 
+  //loob uue useri Persons tabelisse, kui seda pole
   createUser = function() {
 	var length = Persons.find({}).fetch().length;
 	var newUser = {
@@ -65,9 +98,6 @@ if (Meteor.isServer) {
 	Meteor.users.update({_id:Meteor.user()._id}, 
 		{$set:{"profile.cid": persons[i].cid}});
   };
-
-  setUserCandidateData = function() {
-
-  };
+ 
 }
 
