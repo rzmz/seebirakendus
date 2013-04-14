@@ -1,4 +1,4 @@
-##### Seebirakendus HOWTO
+###### Seebirakendus HOWTO
 
 ### Command list for running the application
 ### All commands apply for root folder of the package
