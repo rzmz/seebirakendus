@@ -27,8 +27,8 @@ if (Meteor.isServer) {
 
   //määrab kandidatuuriinfo
   //userDao = objekt, kus on kõik muudetud väärtused..
-  setUserCandidateData: function(userDao) {
-	
+  setUserCandidateData: function(userDao) { 
+	console.log(userDao);
   },
 
   //lisab hääle kandidaadile
