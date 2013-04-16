@@ -1,9 +1,9 @@
-Template.menu.events = {
-    'click ul#main-menu li a': function (event) {
-        event.preventDefault();
+Template.menu.events({
+    'click ul#main-menu li a': function (e) {
+        e.preventDefault();
         // var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
         // var pathname = reg.exec(event.currentTarget.href)[1];
-        var pathname = event.currentTarget.href;
+        var pathname = e.currentTarget.href;
         pathname = pathname.replace(Meteor.absoluteUrl(), '');
         Router.navigate(pathname);
         
@@ -13,8 +13,8 @@ Template.menu.events = {
             $(this).fadeIn(200);
         });
         
-        $(event.target).parent().parent().find('li').removeClass("active");
-        $(event.target).parent().addClass("active");
+        $(e.target).parent().parent().find('li').removeClass("active");
+        $(e.target).parent().addClass("active");
     },
     
     'click ul#login-menu li a': function(e){
@@ -50,5 +50,6 @@ Template.menu.events = {
         e.preventDefault();
         e.stopImmediatePropagation();
         Meteor.logout();
+        return false;
     }
-};
+});
