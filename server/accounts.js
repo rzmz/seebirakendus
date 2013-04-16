@@ -1,3 +1,5 @@
+// küsib githubist lisaks andmeid, sh. näiteks profiilipildi (mine vaata oma kandidatuuri lehele ;)
+// facebooki jaoks oleks vaja midagi sarnast leiutada
 Accounts.onCreateUser(function(options, user){
    var accessToken = user.services.github.accessToken,
        result,
