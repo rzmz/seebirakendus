@@ -10,7 +10,7 @@
         </ul>
         <ul id="login-menu" class="nav pull-right">
           {{#if currentUser}}
-            <li><a href="/logout" id="logout">{{currentUser.profile.login}} (logi välja)</a></li>  
+            <li><a href="/logout" id="logout"><img class="img-rounded" style="width: 25px;" src="{{currentUser.profile.avatar_url}}" /> {{currentUser.profile.login}} (logi välja)</a></li>  
           {{else}}
             {{#if loggingIn}}
               <li><a href="#">login sisse...</a></li>
