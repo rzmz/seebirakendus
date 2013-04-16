@@ -1,15 +1,13 @@
 Template.kandidatuuri_staatus.regions = function() {
 	var regions = Regions.find({}).fetch();
-	if (regions) 
-		{
-		return regions;  
-		}
+	if (regions) return regions;
 }
 
 Template.kandidatuuri_staatus.parties = function() {
 	var parties = Parties.find({}).fetch();
 	if (parties) return parties;
 }
+
 
 Template.kandidatuuri_staatus.events = {
     'submit #candidacy-apply-form': function(e){
@@ -123,30 +121,6 @@ Template.kandidatuuri_staatus.events = {
   }
 
 
-/*
-            if(!Session.get("candidate_error")){
-                var fullName = Session.get("candidate_name").split(" ");
-                var newId = getPersons().length
-                var properties = {
-                    cid:newId+1,
-                    firstName:fullName[0],
-                    lastName:fullName[1],
-                    regionId:parseInt($selected_region.val()),
-                    votedCandidateId:0,
-                    votes:0,
-                    candidateStatus:1,
-                    registrationNr:newId+1,
-                    partyId:parseInt($selected_party.val()),
-                    listPosition:0,
-                    phone:Session.get("candidate_phone"),
-                    email:Session.get("candidate_email"),
-                    maritalStatus:parseInt(Session.get("candidate_marital")),
-                    description:Session.get("candidate_desc")
-                };
-		Meteor.call('updateUserData', properties);
-*/
-
-
   document.getElementById("inputPhone").value = phone;
   document.getElementById("inputEmail").value = email;
   document.getElementById("inputDescription").value = desc;
@@ -179,3 +153,49 @@ Template.kandidaadi_vorm.events({
 	validate();
     }
 });
+
+
+
+
+
+
+//HERE BE DRAGONS
+
+Template.kandidaadi_staatus.candidate_party = function() {
+	//TODO - KINDLASTI TESTIDA! LOO USER, KANDIDEERI, LOGI VÄLJA, SISSE TAGASI!
+//	Meteor.call('currentUserExists'); - ei saa ju seda igas meetodis välja kutsuda..?
+//
+	if (Meteor.user().profile.cid) {
+		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
+		if (candidate && candidate.partyId) return candidate.partyId; 
+	}
+
+};
+
+Template.kandidaadi_staatus.candidate_region = function() {
+
+
+};
+
+
+Template.kandidaadi_vorm.candidate_phone = function() {
+
+
+};
+
+Template.kandidaadi_vorm.candidate_email = function() {
+
+
+};
+
+Template.kandidaadi_vorm.candidate_desc = function() {
+
+
+};
+
+
+//TODO - võta see ära üldse igalt poolt..?
+Template.kandidaadi_vorm.candidate_maritalStatus = function() {
+
+
+};
