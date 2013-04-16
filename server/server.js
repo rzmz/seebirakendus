@@ -25,41 +25,59 @@ if (Meteor.isServer) {
   Meteor.methods({
 
 
-  //määrab kandidatuuriinfo
-  //userDao = objekt, kus on kõik muudetud väärtused..
+  //muudab mingi isiku infot
+  //ei tea kas oleks lihtsamalt saanud aga ei hakanud riskima
   updateUserData: function(userDao) { 
 	if (!currentUserExists())
 		createUser();
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"regionId": parseInt(userDao.regionId)}});	
+	if (userDao.firstName)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"firstName": parseInt(userDao.firstName)}});	
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"votedCandidateId": parseInt(userDao.votedCandidateId)}});	
+	if (userDao.lastName)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"lastName": parseInt(userDao.lastName)}});	
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"candidateStatus": 2}});
+	if (userDao.regionId) 
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"regionId": parseInt(userDao.regionId)}});	
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"registrationNr": parseInt(userDao.registrationNr)}});
+	if (userDao.votedCandidateId)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"votedCandidateId": parseInt(userDao.votedCandidateId)}});	
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"partyId": parseInt(userDao.partyId)}});
+	if (userDao.candidateStatus)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"candidateStatus": userDao.candidateStatus}});	
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"registrationNr": userDao.registrationNr}});
+	if (userDao.registrationNr)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"registrationNr": parseInt(userDao.registrationNr)}});
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"phone": userDao.phone}});
+	if (userDao.partyId)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"partyId": parseInt(userDao.partyId)}});
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"email": userDao.email}});
+	if (userDao.registrationNr)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"registrationNr": userDao.registrationNr}});
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"maritalStatus": parseInt(userDao.maritalStatus)}});
+	if (userDao.phone)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"phone": userDao.phone}});
 
-	Persons.update({cid: Meteor.user().profile.cid}, 
-		{$set:{"description": userDao.description}});
+	if (userDao.email)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"email": userDao.email}});
+
+	if (userDao.maritalStatus)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"maritalStatus": parseInt(userDao.maritalStatus)}});
+
+	if (userDao.description)
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$set:{"description": userDao.description}});
 
   },
 
@@ -124,11 +142,13 @@ if (Meteor.isServer) {
 	var newUser = {
 		cid: length + 1,
 		firstName: Meteor.user().profile.name.split(" ")[0],
-		lastName: Meteor.user().profile.name.split(" ")[1]
+		lastName: Meteor.user().profile.name.split(" ")[1],
+		candidateStatus: 0		
 	};	
 	Persons.insert(newUser);	
 	Meteor.users.update({_id:Meteor.user()._id}, 
 		{$set:{"profile.cid": persons[i].cid}});
+
   };
  
 }
