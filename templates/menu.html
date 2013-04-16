@@ -10,7 +10,7 @@
         </ul>
         <ul id="login-menu" class="nav pull-right">
           {{#if currentUser}}
-            <li><a href="/logout" id="logout"><img class="img-rounded" style="width: 25px;" src="{{currentUser.profile.avatar_url}}" /> {{currentUser.profile.login}} (logi välja)</a></li>  
+            <li><a class="accounts" href="#" data-action="logout"><img class="img-rounded" style="width: 25px;" src="{{currentUser.profile.avatar_url}}" /> {{currentUser.profile.login}} (logi välja)</a></li>  
           {{else}}
             {{#if loggingIn}}
               <li><a href="#">login sisse...</a></li>
@@ -18,8 +18,8 @@
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logi sisse <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/login-github" data-login="github">Githubiga</a></li>
-                  <li><a href="/login-facebook" data-login="facebook">Facebookiga</a></li>
+                  <li><a class="accounts" href="#" data-action="github">Githubiga</a></li>
+                  <li><a class="accounts" href="#" data-action="facebook">Facebookiga</a></li>
                 </ul>
               </li>
             {{/if}}

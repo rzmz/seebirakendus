@@ -18,11 +18,11 @@ Template.menu.events({
     },
     
     'click ul#login-menu li a': function(e){
-        var provider = $(e.currentTarget).data('login');
-        if(provider !== undefined){
+        var action = $(e.currentTarget).data('action');
+        if(action !== undefined){
             e.preventDefault();
-            e.stopImmediatePropagation();
-            if(provider == "github"){
+            e.stopPropagation();
+            if(action == "github"){
                 Meteor.loginWithGithub({
                    requestPermissions: ['user', 'public_repo']
                 }, function(err){
@@ -32,7 +32,7 @@ Template.menu.events({
                         // todo: do something else
                     }
                 });
-            } else if(provider == "facebook"){
+            } else if(action == "facebook"){
                 Meteor.loginWithFacebook({
                     requestPermissions: ['publish_actions']
                 }, function(err){
@@ -42,14 +42,15 @@ Template.menu.events({
                         // todo: do something else
                     }
                 });
+            } else if(action == "logout") {
+                Meteor.logout(function(err){
+                   if(err){
+                       //todo: error handling
+                   } else {
+                       // todo: show some sign that logout was successful
+                   }
+                });
             }
         }
-    },
-    
-    'click #logout': function(e){
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        Meteor.logout();
-        return false;
-    }
+    }    
 });
