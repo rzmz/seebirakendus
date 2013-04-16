@@ -1,23 +1,4 @@
-Template.page_controller.events = {
-    'click ul.nav li a': function (event) {
-        event.preventDefault();
-        // var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
-        // var pathname = reg.exec(event.currentTarget.href)[1];
-        var pathname = event.currentTarget.href;
-        pathname = pathname.replace(Meteor.absoluteUrl(), '');
-        Router.navigate(pathname);
-        
-        var $container = $('#pageMainContent');
-        $container.fadeOut(200, function(e){
-            $(this).html(get_template(pathname));
-            $(this).fadeIn(200);
-        });
-        
-        $(event.target).parent().parent().find('li').removeClass("active");
-        $(event.target).parent().addClass("active");
-    }
-};
-
+// todo: these are plain ugly
 get_page_index = function(which){
     var page_index = Session.get('page_id');    
     if(which !== false){
@@ -44,7 +25,7 @@ Template.page_controller.display_page = function() {
 //dünaamiline tiitel
 Template.page_controller.set_title = function() {
     var tmp = Elections.findOne();
-    document.title = (tmp && tmp.name);
+    document.title = (tmp && tmp.name) || "Seebirakendus";
 };
 
 Template.page_controller.rendered = function() {

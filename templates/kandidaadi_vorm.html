@@ -52,8 +52,12 @@
             <div class="control-group">
               <label class="control-label">Pilt</label>
               <div class="controls">
-                <div class="img-rounded" style="width: 130px; height: 130px; background-color: #e0e0e0;"></div>
-                <br />
+                  {{#if currentUser}}
+                    <img class="img-rounded" style="width: 130px;" src="{{currentUser.profile.avatar_url}}" />
+                  {{else}}
+                    <div class="img-rounded" style="width: 130px; height: 130px; background-color: #e0e0e0;"></div>
+                  {{/if}}
+                  <br />
                 <button type="button" class="btn">Lae uus</button>
               </div>
             </div>

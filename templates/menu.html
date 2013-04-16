@@ -1,0 +1,31 @@
+<template name="menu">
+  <div class="navbar navbar-inverse noprint">
+    <div class="navbar-inner">
+        <ul id="main-menu" class="nav">
+          <li><a href="/" title="Avaleht"><i class="icon-home icon-white"></i></a></li>
+          <li><a href="/tulemused">Tulemused</a></li>
+          <li><a href="/nimekirjad">Nimekirjad</a></li>
+          <li><a href="/kandidatuur">Kandidatuur</a></li>
+          <li><a href="/kaart">Kaart</a></li>
+        </ul>
+        <ul id="login-menu" class="nav pull-right">
+          {{#if currentUser}}
+            <li><a href="/logout" id="logout">{{currentUser.profile.login}} (logi välja)</a></li>  
+          {{else}}
+            {{#if loggingIn}}
+              <li><a href="#">login sisse...</a></li>
+            {{else}}
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logi sisse <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/login-github" data-login="github">Githubiga</a></li>
+                  <li><a href="/login-facebook" data-login="facebook">Facebookiga</a></li>
+                </ul>
+              </li>
+            {{/if}}
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </div>  
+</template>
