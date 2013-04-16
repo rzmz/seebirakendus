@@ -28,14 +28,46 @@ if (Meteor.isServer) {
   //määrab kandidatuuriinfo
   //userDao = objekt, kus on kõik muudetud väärtused..
   setUserCandidateData: function(userDao) { 
-	console.log(userDao);
+	if (!currentUserExists())
+		createUser();
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"regionId": parseInt(userDao.regionId)}});	
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"votedCandidateId": parseInt(userDao.votedCandidateId)}});	
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"candidateStatus": 2}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"registrationNr": parseInt(userDao.registrationNr)}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"partyId": parseInt(userDao.partyId)}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"registrationNr": userDao.registrationNr}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"phone": userDao.phone}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"email": userDao.email}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"maritalStatus": parseInt(userDao.maritalStatus)}});
+
+	Persons.update({cid: Meteor.user().profile.cid}, 
+		{$set:{"description": userDao.description}});
+
   },
 
   //lisab hääle kandidaadile
   setVote: function(candidateCid) {
 	if (!currentUserExists())
 		createUser();
-  	
+
 
 	//TODO: kui candidateCid == -1, siis eemaldame (pmst tühistas hääle ära)
 	//TODO: tee nupp selleks candidate_list lehele.. 
