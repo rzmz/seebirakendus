@@ -1,5 +1,29 @@
 <template name="kandidatuuri_staatus">
     
+  {{#if candidate_applied}}
+  <div class="well">
+    <form class="form-horizontal" id="candidacy-currentapplication-form">
+        <legend>Kandideerid järgmiste andmetega:</legend>
+
+    <div class="details-view">
+          <div class="row">
+            <div class="span2"><label>Piirkond</label></div>
+            <div class="span6">{{candidate_region}}</div>
+          </div>
+          <div class="row">
+            <div class="span2"><label>Erakond</label></div>
+            <div class="span6">{{candidate_party}}</div>
+          </div>
+    </div>
+    <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-primary" id="remove_candidate">Tühista taotlus</button>
+            </div>
+          </div>
+    </form>
+  </div>
+
+  {{else}}
   <div class="well">
     <form class="form-horizontal" id="candidacy-apply-form">
       <input type="hidden" id="selected-region" />
@@ -46,5 +70,6 @@
       </fieldset>
     </form>
   </div>
+  {{/if}}
     
 </template>

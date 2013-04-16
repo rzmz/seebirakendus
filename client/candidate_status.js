@@ -157,27 +157,40 @@ Template.kandidaadi_vorm.events({
 
 
 
+Template.kandidatuuri_staatus.candidate_applied = function() {
+return true;
+/*
+	if (Meteor.user().profile.cid) {
+		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
+		if (candidate && candidate.partyId) return candidate.candidateStatus == 2; 
+	}
+*/
+};
+
 
 
 //HERE BE DRAGONS
 
-Template.kandidaadi_staatus.candidate_party = function() {
+Template.kandidatuuri_staatus.candidate_party = function() {
 	//TODO - KINDLASTI TESTIDA! LOO USER, KANDIDEERI, LOGI VÄLJA, SISSE TAGASI!
 //	Meteor.call('currentUserExists'); - ei saa ju seda igas meetodis välja kutsuda..?
 //
+
+	return "paaaarti";
+/*
 	if (Meteor.user().profile.cid) {
 		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
 		if (candidate && candidate.partyId) return candidate.partyId; 
-	}
+	}*/
 
 };
 
-Template.kandidaadi_staatus.candidate_region = function() {
-
+Template.kandidatuuri_staatus.candidate_region = function() {
+	return "haaaaaaard";
 
 };
 
-
+/*
 Template.kandidaadi_vorm.candidate_phone = function() {
 
 
@@ -198,4 +211,4 @@ Template.kandidaadi_vorm.candidate_desc = function() {
 Template.kandidaadi_vorm.candidate_maritalStatus = function() {
 
 
-};
+};*/
