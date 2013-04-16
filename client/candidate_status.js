@@ -38,21 +38,26 @@ Template.kandidatuuri_staatus.events = {
         }
         if(!regionError && !partyError){
             clearAllErrors();
-            if(!Session.get("candidate_error")){
-                var fullName = Session.get("candidate_name").split(" ");
-                var newId = getPersons().length
                 var properties = {
                     regionId:parseInt($selected_region.val()),                    
-                    partyId:parseInt($selected_party.val())
+                    partyId:parseInt($selected_party.val()),
+		    candidateStatus:2
                 };
 		Meteor.call('updateUserData', properties);
 		setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
-
-            } else {
-                setError('Allpool olevad väljad on täitmata!');
-            }
         }
-    }
+    },
+
+    'submit #candidacy-currentapplication-form': function(e){
+        e.preventDefault();
+        var properties = {
+           regionId:-1,                    
+            partyId:-1,
+	    candidateStatus:0
+        };
+	Meteor.call('updateUserData', properties);
+
+     }
 };
 
 
@@ -112,7 +117,7 @@ Template.kandidatuuri_staatus.events = {
         var properties = {
 	        phone:phone,
 		email:email,
-		desc:desc,
+		description:desc,
 		maritalStatus:$('#selected-marital').val()                   
             };
 
@@ -158,13 +163,10 @@ Template.kandidaadi_vorm.events({
 
 
 Template.kandidatuuri_staatus.candidate_applied = function() {
-return true;
-/*
 	if (Meteor.user().profile.cid) {
 		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
 		if (candidate && candidate.partyId) return candidate.candidateStatus == 2; 
 	}
-*/
 };
 
 
@@ -176,18 +178,17 @@ Template.kandidatuuri_staatus.candidate_party = function() {
 //	Meteor.call('currentUserExists'); - ei saa ju seda igas meetodis välja kutsuda..?
 //
 
-	return "paaaarti";
-/*
 	if (Meteor.user().profile.cid) {
 		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
 		if (candidate && candidate.partyId) return candidate.partyId; 
-	}*/
-
+	}
 };
 
 Template.kandidatuuri_staatus.candidate_region = function() {
-	return "haaaaaaard";
-
+	if (Meteor.user().profile.cid) {
+		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
+		if (candidate && candidate.partyId) return candidate.regionId; 
+	}
 };
 
 /*

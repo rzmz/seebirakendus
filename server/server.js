@@ -47,7 +47,7 @@ if (Meteor.isServer) {
 		Persons.update({cid: Meteor.user().profile.cid}, 
 			{$set:{"votedCandidateId": parseInt(userDao.votedCandidateId)}});	
 
-	if (userDao.candidateStatus)
+	if (userDao.candidateStatus || parseInt(userDao.candidateStatus) == 0)
 		Persons.update({cid: Meteor.user().profile.cid}, 
 			{$set:{"candidateStatus": userDao.candidateStatus}});	
 
@@ -80,6 +80,7 @@ if (Meteor.isServer) {
 			{$set:{"description": userDao.description}});
 
 	console.log(Persons.findOne({cid: Meteor.user().profile.cid}));
+	console.log(userDao);
 
   },
 
@@ -149,7 +150,7 @@ if (Meteor.isServer) {
 	};	
 	Persons.insert(newUser);	
 	Meteor.users.update({_id:Meteor.user()._id}, 
-		{$set:{"profile.cid": persons[i].cid}});
+		{$set:{"profile.cid": newUser.cid}});
 
   };
  
