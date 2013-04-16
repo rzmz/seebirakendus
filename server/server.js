@@ -79,8 +79,8 @@ if (Meteor.isServer) {
 		Persons.update({cid: Meteor.user().profile.cid}, 
 			{$set:{"description": userDao.description}});
 
-	console.log(Persons.findOne({cid: Meteor.user().profile.cid}));
-	console.log(userDao);
+	//console.log(Persons.findOne({cid: Meteor.user().profile.cid}));
+	//console.log(userDao);
 
   },
 
@@ -103,12 +103,25 @@ if (Meteor.isServer) {
 			{$set:{"votes": previousVotes - 1}});
 	}
 
+
+
+	candidateCid = parseInt(candidateCid);
+
+
+	//eemaldame hääle..
+	if (candidateCid == -1) {
+		Persons.update({cid: Meteor.user().profile.cid}, 
+			{$unset:{"votedCandidateId": 1}});
+	return;
+	}
+
+
 	//muudame hääletaja "voted for" vms väärtust..
 	Persons.update({cid: Meteor.user().profile.cid}, 
 		{$set:{"votedCandidateId": candidateCid}});	
 
 	//uuele paneme hääle juurde
-	candidateCid = parseInt(candidateCid);
+
 	var newVotes = Persons.findOne({cid: candidateCid}).votes;	
 	Persons.update({cid: candidateCid}, 
 		{$set:{"votes": newVotes + 1}});

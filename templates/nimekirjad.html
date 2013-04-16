@@ -26,11 +26,36 @@
   </div>
 
   {{#if currentUser}}
+	{{#if votedCandidateExists}}
+  <div class="well">
+    <form class="form-horizontal" id="currently_voted_candidate-form">
+        <legend>Praegu oled enda hääle andnud kandidaadile:</legend>
+
+    <div class="details-view">
+          <div class="row">
+            <div class="span2"><label>Nimi</label></div>
+            <div class="span6">{{current_candidate_name}}</div>
+          </div>
+          <div class="row">
+            <div class="span2"><label>Erakond</label></div>
+            <div class="span6">{{current_candidate_party}}</div>
+          </div>
+    </div>
+    <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-primary" id="remove_vote">Tühista hääl</button>
+            </div>
+          </div>
+    </form>
+  </div>
+
+	{{else}}
     <div class="alert alert-block">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <h4>Valitud kandidaat</h4>
       <p id="voted_candidate">Valitud kandidaat puudub. Enda hääle andmiseks kandidaadile klõpsa allpool olevas nimekirjas sobiva kandidaadi nime järel "HÄÄLETA".</p>
     </div>
+	{{/if}}
   {{/if}}
   
   <table class="table table-bordered table-striped tablesorter">
@@ -60,7 +85,7 @@
 	    {{/unless}}
           </td>        
           {{#if currentUser}}
-            <td><a id={{cid}} class="vote">Hääleta!</a></td>        
+            <td><a href="#" id={{cid}} class="vote">Hääleta!</a></td>        
           {{/if}}
         </tr>
       {{/each}}

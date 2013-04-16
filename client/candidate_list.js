@@ -195,7 +195,11 @@ Template.nimekirjad.events({
     },
     'click .vote': function(e){
 	Meteor.call('setVote', e.target.id);
-    }
+    },
+    'submit #currently_voted_candidate-form': function(e){
+        e.preventDefault();
+	Meteor.call('setVote', -1);
+     }
 });
 
 Template.nimekirjad.currentSearchValue = function() {
@@ -217,4 +221,32 @@ Template.nimekirjad.currentSearchRegionEnabled = function() {
 
 Template.nimekirjad.currentSearchPartyEnabled = function() {
 	return Session.get("nimekirjad_current_search_party_enabled");
+};
+
+Template.nimekirjad.votedCandidateExists = function() {
+
+	var user = Persons.findOne({cid: Meteor.user().profile.cid});	
+	if (user && (user.votedCandidateId || user.votedCandidateId == parseInt(0)))
+		return true; 
+
+};
+
+Template.nimekirjad.current_candidate_name = function() {
+	var user = Persons.findOne({cid: Meteor.user().profile.cid});	
+	if (user) {
+		var candidate = Persons.findOne({cid: user.votedCandidateId});
+		if (candidate) {
+			return candidate.firstName + " " + candidate.lastName;
+			}
+		};
+};
+
+Template.nimekirjad.current_candidate_party = function() {
+	var user = Persons.findOne({cid: Meteor.user().profile.cid});	
+	if (user) {
+		var candidate = Persons.findOne({cid: user.votedCandidateId});
+		if (candidate) {
+			return getPartyNameById(candidate.partyId);
+			}
+		};
 };
