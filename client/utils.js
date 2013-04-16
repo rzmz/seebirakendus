@@ -33,7 +33,7 @@ getParties = function() {
 //utilityfunktsioonid
 getRegionNameById = function(regionId) {
     var regions = getRegions();
-    var regionName = "NO SUCH REGION!";
+    var regionName = "...";
     
     for (var i = 0; i < regions.length; i++) {
         if (regions[i].cid == regionId) {
@@ -47,7 +47,7 @@ getRegionNameById = function(regionId) {
 getPartyNameById = function(partyId) {
     var parties = getParties();
     if (partyId == 0) return "Üksikkandidaat";
-        var partyName = "POLE SELLIST ERAKONDA";
+        var partyName = "...";
         
         for (var i = 0; i < parties.length; i++) {
             if (parties[i].cid == partyId) {

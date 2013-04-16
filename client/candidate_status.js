@@ -180,14 +180,14 @@ Template.kandidatuuri_staatus.candidate_party = function() {
 
 	if (Meteor.user().profile.cid) {
 		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
-		if (candidate && candidate.partyId) return candidate.partyId; 
+		if (candidate && candidate.partyId) return getPartyNameById(candidate.partyId); 
 	}
 };
 
 Template.kandidatuuri_staatus.candidate_region = function() {
 	if (Meteor.user().profile.cid) {
 		var candidate = Persons.findOne({cid: Meteor.user().profile.cid});	
-		if (candidate && candidate.partyId) return candidate.regionId; 
+		if (candidate && candidate.partyId) return getRegionNameById(candidate.regionId); 
 	}
 };
 
