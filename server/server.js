@@ -79,6 +79,8 @@ if (Meteor.isServer) {
 		Persons.update({cid: Meteor.user().profile.cid}, 
 			{$set:{"description": userDao.description}});
 
+	console.log(Persons.findOne({cid: Meteor.user().profile.cid}));
+
   },
 
   //lisab hääle kandidaadile

@@ -44,41 +44,11 @@ Template.kandidatuuri_staatus.events = {
                 var fullName = Session.get("candidate_name").split(" ");
                 var newId = getPersons().length
                 var properties = {
-                    cid:newId+1,
-                    firstName:fullName[0],
-                    lastName:fullName[1],
-                    regionId:parseInt($selected_region.val()),
-                    votedCandidateId:0,
-                    votes:0,
-                    candidateStatus:1,
-                    registrationNr:newId+1,
-                    partyId:parseInt($selected_party.val()),
-                    listPosition:0,
-                    phone:Session.get("candidate_phone"),
-                    email:Session.get("candidate_email"),
-                    maritalStatus:parseInt(Session.get("candidate_marital")),
-                    description:Session.get("candidate_desc")
+                    regionId:parseInt($selected_region.val()),                    
+                    partyId:parseInt($selected_party.val())
                 };
 		Meteor.call('updateUserData', properties);
 		setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
-
-/*
-                var persons = getPersons();
-                var found = false;
-                if (persons) {
-                    for (var i = 0; i < persons.length; i++) {
-                        if(persons[i].firstName == properties.firstName && persons[i].lastName == properties.lastName) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-                if(!found){
-                    Persons.insert(properties);
-                    setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
-                } else {
-                    setError("Selline isik on juba olemas!");
-                }*/
 
             } else {
                 setError('Allpool olevad väljad on täitmata!');
@@ -138,10 +108,45 @@ Template.kandidatuuri_staatus.events = {
         Session.set("candidate_email", email);
         Session.set("candidate_desc", desc);
         Session.set("candidate_name", $('#candidateName').val());
-        Session.set("candidate_marital", desc);
         Session.set("candidate_error", false);
         Session.set("candidate_marital", $('#selected-marital').val());
+
+        var properties = {
+	        phone:phone,
+		email:email,
+		desc:desc,
+		maritalStatus:$('#selected-marital').val()                   
+            };
+
+	Meteor.call('updateUserData', properties);
+                    
   }
+
+
+/*
+            if(!Session.get("candidate_error")){
+                var fullName = Session.get("candidate_name").split(" ");
+                var newId = getPersons().length
+                var properties = {
+                    cid:newId+1,
+                    firstName:fullName[0],
+                    lastName:fullName[1],
+                    regionId:parseInt($selected_region.val()),
+                    votedCandidateId:0,
+                    votes:0,
+                    candidateStatus:1,
+                    registrationNr:newId+1,
+                    partyId:parseInt($selected_party.val()),
+                    listPosition:0,
+                    phone:Session.get("candidate_phone"),
+                    email:Session.get("candidate_email"),
+                    maritalStatus:parseInt(Session.get("candidate_marital")),
+                    description:Session.get("candidate_desc")
+                };
+		Meteor.call('updateUserData', properties);
+*/
+
+
   document.getElementById("inputPhone").value = phone;
   document.getElementById("inputEmail").value = email;
   document.getElementById("inputDescription").value = desc;
