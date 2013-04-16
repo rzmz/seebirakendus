@@ -59,7 +59,7 @@ Template.kandidatuuri_staatus.events = {
                     maritalStatus:parseInt(Session.get("candidate_marital")),
                     description:Session.get("candidate_desc")
                 };
-		Meteor.call('setUserCandidateData', properties);
+		Meteor.call('updateUserData', properties);
 		setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
 
 /*

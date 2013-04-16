@@ -27,7 +27,7 @@ if (Meteor.isServer) {
 
   //määrab kandidatuuriinfo
   //userDao = objekt, kus on kõik muudetud väärtused..
-  setUserCandidateData: function(userDao) { 
+  updateUserData: function(userDao) { 
 	if (!currentUserExists())
 		createUser();
 
