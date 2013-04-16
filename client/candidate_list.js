@@ -173,7 +173,7 @@ Template.nimekirjad.events({
 	    if (Session.get("nimekirjad_current_search_last_name_enabled")) urlFilters += "l";
 	    if (Session.get("nimekirjad_current_search_region_enabled")) urlFilters += "r";
 	    if (Session.get("nimekirjad_current_search_party_enabled")) urlFilters += "p";
-	    Router.navigateTo("nimekirjad?filters=" + urlFilters + "&query=" + urlQuery);
+	    Router.navigate("nimekirjad?filters=" + urlFilters + "&query=" + urlQuery);
             spinner.stop();
         }, 1000);
         //TODO - esimese asjana kustuta kõik väärtused..

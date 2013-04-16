@@ -1,33 +1,51 @@
 // küsib githubist lisaks andmeid, sh. näiteks profiilipildi (mine vaata oma kandidatuuri lehele ;)
 // facebooki jaoks oleks vaja midagi sarnast leiutada
 Accounts.onCreateUser(function(options, user){
-   var accessToken = user.services.github.accessToken,
-       result,
-       profile;
-       
-       result = Meteor.http.get("https://api.github.com/user", {
-          params: {
-              access_token: accessToken
-          }
-       });
-       
-       if(result.error){
-           throw result.error;
-       }
-       
-       profile = _.pick(result.data,
-           "login",
-           "name",
-           "avatar_url",
-           "url",
-           "company",
-           "blog",
-           "location",
-           "email",
-           "bio",
-           "html_url"
-       );
-
-       user.profile = profile;
-       return user;
+    if(user.services.github){
+        var accessToken = user.services.github.accessToken,
+            result,
+            profile;
+        
+            result = Meteor.http.get("https://api.github.com/user", {
+                params: {
+                    access_token: accessToken
+                }
+            });
+        
+            if(result.error){
+                throw result.error;
+            }
+        
+            profile = _.pick(result.data,
+                "name",
+                "avatar_url",
+                "email"
+            );
+        
+    } else if(user.services.facebook){
+        var accessToken = user.services.facebook.accessToken,
+            result,
+            profile;
+            
+            result = Meteor.http.get("https://graph.facebook.com/me", {
+               params: {
+                   access_token: accessToken
+               } 
+            });
+            
+            if(result.error){
+                throw result.error;
+            }
+            
+            profile = _.pick(result.data,
+                "name",
+                "email"                
+            );
+            
+            profile.avatar_url = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+            
+    }
+    
+    user.profile = profile;
+    return user;
 });
