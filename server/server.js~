@@ -121,11 +121,8 @@ if (Meteor.isServer) {
 		{$set:{"votedCandidateId": candidateCid}});	
 
 	//uuele paneme hääle juurde
-	var newVotes;
-	if (Persons.findOne({cid: candidateCid}).votes || Persons.findOne({cid: candidateCid}).votes == 0)
-  		newVotes = Persons.findOne({cid: candidateCid}).votes;
-	else
-  		newVotes = 0;	
+
+	var newVotes = Persons.findOne({cid: candidateCid}).votes;	
 	Persons.update({cid: candidateCid}, 
 		{$set:{"votes": newVotes + 1}});
   	}
