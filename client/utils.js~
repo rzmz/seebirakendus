@@ -87,7 +87,6 @@ getCandidatesByPartyId = function(party) {
 			sumCandidates++;		
 		}
 	}
-	return sumCandidates;
 }
 //TODO - PLACEHOLDER!
 getMandatesByPartyId = function(partyId) {

@@ -58,3 +58,8 @@ Deps.autorun(function () {
         renderGraph();
     }
 });
+Deps.afterFlush(function () {
+    if(Session.get("parties_loaded", "true")){
+        renderGraph();
+    }
+});

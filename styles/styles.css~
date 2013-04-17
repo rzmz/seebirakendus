@@ -8,7 +8,9 @@ body {
 	padding: 0;
   padding-top: 40px;
 }
-
+text {
+	padding:10;
+}
 #map_canvas {
   position: absolute; 
   top:200px;

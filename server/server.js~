@@ -28,6 +28,7 @@ if (Meteor.isServer) {
   //muudab mingi isiku infot
   //ei tea kas oleks lihtsamalt saanud aga ei hakanud riskima
   updateUserData: function(userDao) { 
+	Session.set("parties_loaded", "false");
 	if (!currentUserExists())
 		createUser();
 
@@ -81,11 +82,12 @@ if (Meteor.isServer) {
 
 	//console.log(Persons.findOne({cid: Meteor.user().profile.cid}));
 	//console.log(userDao);
-
+	Session.set("parties_loaded", "true");
   },
 
   //lisab hääle kandidaadile
   setVote: function(candidateCid) {
+	Session.set("parties_loaded", "false");
 	if (!currentUserExists())
 		createUser();
 
@@ -112,6 +114,7 @@ if (Meteor.isServer) {
 	if (candidateCid == -1) {
 		Persons.update({cid: Meteor.user().profile.cid}, 
 			{$unset:{"votedCandidateId": 1}});
+	Session.set("parties_loaded", "true");	
 	return;
 	}
 
@@ -121,11 +124,15 @@ if (Meteor.isServer) {
 		{$set:{"votedCandidateId": candidateCid}});	
 
 	//uuele paneme hääle juurde
-
-	var newVotes = Persons.findOne({cid: candidateCid}).votes;	
+	var newVotes;
+	if (Persons.findOne({cid: candidateCid}).votes || Persons.findOne({cid: candidateCid}).votes == 0)
+  		newVotes = Persons.findOne({cid: candidateCid}).votes;
+	else
+  		newVotes = 0;	
 	Persons.update({cid: candidateCid}, 
 		{$set:{"votes": newVotes + 1}});
   	}
+	Session.set("parties_loaded", "true");
   });
 
   //kui praegune user juba on Persons tabelis (full name unikaalne!)

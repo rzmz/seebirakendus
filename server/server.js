@@ -81,7 +81,6 @@ if (Meteor.isServer) {
 
 	//console.log(Persons.findOne({cid: Meteor.user().profile.cid}));
 	//console.log(userDao);
-
   },
 
   //lisab hääle kandidaadile
