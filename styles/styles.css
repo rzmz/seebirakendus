@@ -66,3 +66,9 @@ body {
     width:250px;
     text-align:center;
 }*/
+
+#graphHolder {
+/*    margin: -350px 0 0 -350px;
+*/    width: 700px;
+    height: 700px;
+}
