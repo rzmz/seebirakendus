@@ -17,40 +17,50 @@ Template.menu.events({
         $(e.target).parent().addClass("active");
     },
     
-    'click ul#login-menu li a': function(e){
-        var action = $(e.currentTarget).data('action');
-        if(action !== undefined){
-            e.preventDefault();
-            e.stopPropagation();
-            if(action == "github"){
-                Meteor.loginWithGithub({
-                   requestPermissions: ['user', 'public_repo']
-                }, function(err){
-                    if(err){
-                        // todo: error handling
-                    } else {
-                        // todo: do something else
-                    }
-                });
-            } else if(action == "facebook"){
-                Meteor.loginWithFacebook({
-                    requestPermissions: ['publish_actions']
-                }, function(err){
-                    if(err){
-                        // todo: error handling
-                    } else {
-                        // todo: do something else
-                    }
-                });
-            } else if(action == "logout") {
-                Meteor.logout(function(err){
-                   if(err){
-                       //todo: error handling
-                   } else {
-                       // todo: show some sign that logout was successful
-                   }
-                });
-            }
+    // 'click ul#login-menu li a.accounts': function(e){
+    // }    
+});
+
+// ajutine häkk muidugi
+var doLoginStuff = function(e){
+    var action = $(e.currentTarget).data('action');
+    if(action !== undefined){
+        e.preventDefault();
+        e.stopPropagation();
+        if(action == "github"){
+            Meteor.loginWithGithub({
+               requestPermissions: ['user', 'public_repo']
+            }, function(err){
+                if(err){
+                    // todo: error handling
+                } else {
+                    // todo: do something else
+                }
+            });
+        } else if(action == "facebook"){
+            Meteor.loginWithFacebook({
+                requestPermissions: ['publish_actions']
+            }, function(err){
+                if(err){
+                    // todo: error handling
+                } else {
+                    // todo: do something else
+                }
+            });
+        } else if(action == "logout") {
+            Meteor.logout(function(err){
+               if(err){
+                   //todo: error handling
+               } else {
+                   // todo: show some sign that logout was successful
+               }
+            });
         }
     }    
-});
+}
+Template.menu.rendered = function(){
+    var $element = $('a.accounts');
+    $element.click(function(e){
+        doLoginStuff(e);
+    });    
+};
