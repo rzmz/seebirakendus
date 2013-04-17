@@ -44,6 +44,10 @@ Accounts.onCreateUser(function(options, user){
             
             profile.avatar_url = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
             
+    } else if(user.username == "test"){
+        var profile = {};
+        profile.name = "Test User";
+        profile.avatar_url = Meteor.absoluteUrl() + "images/mayor-quimby.jpeg";
     }
     
     user.profile = profile;

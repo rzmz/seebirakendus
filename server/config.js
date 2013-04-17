@@ -1,3 +1,8 @@
+// teeme ühe testuseri
+if(!Meteor.users.findOne({username: "test"})){
+    Accounts.createUser({username: "test", password: "test"});
+}
+
 // teeme nii et facebooki ja githubi loginid on automaatselt konfitud
 
 Accounts.loginServiceConfiguration.remove({

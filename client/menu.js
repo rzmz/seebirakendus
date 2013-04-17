@@ -1,27 +1,20 @@
-Template.menu.events({
-    'click ul#main-menu li a': function (e) {
-        e.preventDefault();
-        // var reg = /.+?\:\/\/.+?(\/.+?)(?:#|\?|$)/;
-        // var pathname = reg.exec(event.currentTarget.href)[1];
-        var pathname = e.currentTarget.href;
-        pathname = pathname.replace(Meteor.absoluteUrl(), '');
-        Router.navigate(pathname);
-        
-        var $container = $('#pageMainContent');
-        $container.fadeOut(200, function(e){
-            $(this).html(get_template(pathname));
-            $(this).fadeIn(200);
-        });
-        
-        $(e.target).parent().parent().find('li').removeClass("active");
-        $(e.target).parent().addClass("active");
-    },
+var doPageChange = function(e){
+    e.preventDefault();
+    var pathname = e.currentTarget.href;
+    pathname = pathname.replace(Meteor.absoluteUrl(), '');
+    Router.navigate(pathname);
     
-    // 'click ul#login-menu li a.accounts': function(e){
-    // }    
-});
+    var $container = $('#pageMainContent');
+    $container.fadeOut(200, function(e){
+        $(this).html(get_template(pathname));
+        $(this).fadeIn(200);
+    });
+    
+    $(e.target).parent().parent().find('li').removeClass("active");
+    $(e.target).parent().addClass("active");
+    
+};
 
-// ajutine häkk muidugi
 var doLoginStuff = function(e){
     var action = $(e.currentTarget).data('action');
     if(action !== undefined){
@@ -47,6 +40,8 @@ var doLoginStuff = function(e){
                     // todo: do something else
                 }
             });
+        } else if(action == "oldschool"){
+            Router.navigate("login");
         } else if(action == "logout") {
             Meteor.logout(function(err){
                if(err){
@@ -59,8 +54,10 @@ var doLoginStuff = function(e){
     }    
 }
 Template.menu.rendered = function(){
-    var $element = $('a.accounts');
-    $element.click(function(e){
+    $('a.accounts').click(function(e){
         doLoginStuff(e);
+    });
+    $('a.navigate').click(function(e){
+        doPageChange(e);
     });    
 };

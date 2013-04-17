@@ -2,12 +2,12 @@
   <div class="navbar navbar-inverse noprint">
     <div class="navbar-inner">
         <ul id="main-menu" class="nav">
-          <li><a href="/" title="Avaleht"><i class="icon-home icon-white"></i></a></li>
-          <li><a href="/tulemused">Tulemused</a></li>
-          <li><a href="/nimekirjad">Nimekirjad</a></li>
-          <li><a href="/kandidatuur">Kandidatuur</a></li>
-          <li><a href="/kaart">Kaart</a></li>
-          <li><a href="/graafikud">Graafikud</a></li>
+          <li><a class="navigate" href="/" title="Avaleht"><i class="icon-home icon-white"></i></a></li>
+          <li><a class="navigate" href="/tulemused">Tulemused</a></li>
+          <li><a class="navigate" href="/nimekirjad">Nimekirjad</a></li>
+          <li><a class="navigate" href="/kandidatuur">Kandidatuur</a></li>
+          <li><a class="navigate" href="/kaart">Kaart</a></li>
+          <li><a class="navigate" href="/graafikud">Graafikud</a></li>
         </ul>
         <ul id="login-menu" class="nav pull-right">
           {{#if currentUser}}
@@ -21,6 +21,7 @@
                 <ul class="dropdown-menu">
                   <li><a class="accounts" href="#" data-action="github">Githubiga</a></li>
                   <li><a class="accounts" href="#" data-action="facebook">Facebookiga</a></li>
+                  <!-- <li><a class="navigate" href="/login" data-action="oldschool">Vanakool</a></li> -->
                 </ul>
               </li>
             {{/if}}

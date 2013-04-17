@@ -1,0 +1,12 @@
+<template name="login">
+  {{#if loggingIn}}
+    <div id="alert-messages" class="alert alert-info">Login sisse...</div>
+  {{/if}}
+  <form id="loginform">
+    <label for="username">Kasutaja</label>
+    <input type="text" id="username" placeholder="kasutaja" /><br/>
+    <label for="username">Salasõna</label>
+    <input type="password" id="password" placeholder="parool" /><br/>
+    <input type="submit" value="Logi sisse" />
+  </form>
+</template>
