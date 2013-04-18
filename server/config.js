@@ -1,4 +1,4 @@
-// teeme ühe testuseri
+// teeme ühe testkasutaja et ei peaks sõltuma interneedusest
 if(!Meteor.users.findOne({username: "test"})){
     Accounts.createUser({username: "test", password: "test"});
 }
