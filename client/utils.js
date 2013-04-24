@@ -129,26 +129,3 @@ btn_spinner_opts = {
     top: 'auto', // Top position relative to parent in px
     left: '0' // Left position relative to parent in px
 };
-
-setError = function(message, $element) {
-    if($element !== undefined){
-        $element.addClass('error');        
-    }
-    $('#alert-messages').html(message);
-    $('#alert-messages').removeClass('alert-info');
-    $('#alert-messages').removeClass('disabled');    
-    $('#alert-messages').addClass('alert-error');
-};
-
-clearError = function($element){
-    $element.removeClass("error");
-};
-
-clearAllErrors = function(){
-    $('#alert-messages').addClass('disabled');
-}
-
-
-
-
-

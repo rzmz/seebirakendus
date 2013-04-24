@@ -1,33 +1,14 @@
-var doPageChange = function(e){
-    e.preventDefault();
-    var pathname = e.currentTarget.href;
-    pathname = pathname.replace(Meteor.absoluteUrl(), '');
-    Router.navigate(pathname);
-    
-    var $container = $('#pageMainContent');
-    $container.fadeOut(200, function(e){
-        $(this).html(get_template(pathname));
-        $(this).fadeIn(200);
-    });
-    
-    $(e.target).parent().parent().find('li').removeClass("active");
-    $(e.target).parent().addClass("active");
-    
-};
-
-var doLoginStuff = function(e){
-    var action = $(e.currentTarget).data('action');
+var doLoginStuff = function(target) {
+    var action = $(target).data('action');
     if(action !== undefined){
-        e.preventDefault();
-        e.stopPropagation();
         if(action == "github"){
             Meteor.loginWithGithub({
                requestPermissions: ['user', 'public_repo']
             }, function(err){
                 if(err){
-                    // todo: error handling
+                    setError("Sisse logimine ei õnnestunud.");
                 } else {
-                    // todo: do something else
+                    setMessage("Edukalt sisse logitud Githubiga.");
                 }
             });
         } else if(action == "facebook"){
@@ -35,9 +16,9 @@ var doLoginStuff = function(e){
                 requestPermissions: ['publish_actions']
             }, function(err){
                 if(err){
-                    // todo: error handling
+                    setError("Sisse logimine ei õnnestunud.");
                 } else {
-                    // todo: do something else
+                    setMessage("Edukalt sisse logitud Facebookiga.");
                 }
             });
         } else if(action == "oldschool"){
@@ -45,19 +26,19 @@ var doLoginStuff = function(e){
         } else if(action == "logout") {
             Meteor.logout(function(err){
                if(err){
-                   //todo: error handling
+                   setError("Väljalogimine ei õnnestunud miskipärast.");
                } else {
-                   // todo: show some sign that logout was successful
+                   setMessage("Edukalt välja logitud.");
                }
             });
         }
-    }    
+    }
 }
-Template.menu.rendered = function(){
-    $('a.accounts').click(function(e){
-        doLoginStuff(e);
-    });
-    $('a.navigate').click(function(e){
-        doPageChange(e);
-    });    
-};
+
+Template.menu.events({
+    'click a.accounts': function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        doLoginStuff(e.currentTarget);
+    }
+});

@@ -44,7 +44,7 @@ Template.kandidatuuri_staatus.events = {
 		    candidateStatus:2
                 };
 		Meteor.call('updateUserData', properties);
-		setError("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
+		setMessage("Taotlus esitatud! (Praegu näete oma nime kohe nimekirjas)");
         }
     },
 

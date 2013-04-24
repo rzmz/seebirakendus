@@ -11,6 +11,10 @@
         <div><br /><br /></div>
       </div>
     </div>
+    {{> menu}}
+    {{#if alert-message}}
+      <div id="alert-messages" class="alert {{alert-class}}">{{alert-message}}</div>
+    {{/if}}
     <div class="row">
       <div class="span12">
         {{> page_controller}}
@@ -21,10 +25,6 @@
 
 <template name="page_controller">
   {{{set_title}}}
-  {{#constant}}
-  {{> menu}}
-  {{/constant}}
-  <div id="alert-messages" class="alert alert-info disabled"></div>
   <div id="pageMainContent">
     {{{display_page}}}
   </div>
