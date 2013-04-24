@@ -51,13 +51,11 @@ Template.graafikud.rendered = function() {
     $(this.find("button[data-type="+Session.get("graafikud_tab")+"]")).addClass("active");
     if(Session.get("parties_loaded", "true")){
         renderGraph();
-        console.log("graafikud.rendered");
     }
 };
 
 Deps.autorun(function () {
     if(Session.get("parties_loaded", "true")){
         renderGraph();
-        console.log("deps.autorun");
     }
 });
