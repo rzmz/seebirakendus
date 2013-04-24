@@ -29,7 +29,6 @@ Template.graafikud.parties = function () {
             };
 
             Session.set("parties_loaded", "true");
-	    renderGraph();
             return ret;
 		}
     }
@@ -50,7 +49,9 @@ var renderGraph = function(){
 
 Template.graafikud.rendered = function() {
     $(this.find("button[data-type="+Session.get("graafikud_tab")+"]")).addClass("active");
-    renderGraph();
+    if(Session.get("parties_loaded", "true")){
+        renderGraph();
+    }
 };
 
 Deps.autorun(function () {
