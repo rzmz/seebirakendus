@@ -1,8 +1,3 @@
-Template.kandidatuuri_staatus.regions = function() {
-	var regions = Regions.find({}).fetch();
-	if (regions) return regions;
-}
-
 Template.kandidatuuri_staatus.parties = function() {
 	var parties = Parties.find({}).fetch();
 	if (parties) return parties;

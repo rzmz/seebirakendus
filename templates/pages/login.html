@@ -1,4 +1,5 @@
 <template name="login">
+  {{#unless currentUser}}
   <form id="loginform">
     <label for="username">Kasutaja</label>
     <input type="text" id="username" placeholder="kasutaja" /><br/>
@@ -6,4 +7,7 @@
     <input type="password" id="password" placeholder="parool" /><br/>
     <input type="submit" value="Logi sisse" />
   </form>
+  {{else}}
+    Oled juba sisse loginud, {{currentUser.profile.name}}
+  {{/unless}}
 </template>

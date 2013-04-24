@@ -21,3 +21,7 @@ loadMapScript = function() {
     }
     document.body.appendChild(script);
 }
+
+Template.kaart.rendered = function(){
+    loadMapScript();
+};

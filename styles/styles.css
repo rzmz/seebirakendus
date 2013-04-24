@@ -68,7 +68,6 @@ body {
 }*/
 
 #graphHolder {
-/*    margin: -350px 0 0 -350px;
-*/    width: 700px;
-    height: 700px;
+  width: 100%;
+  height: 100%;
 }

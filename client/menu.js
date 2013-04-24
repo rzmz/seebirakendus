@@ -42,3 +42,7 @@ Template.menu.events({
         doLoginStuff(e.currentTarget);
     }
 });
+
+Template.menu.rendered = function(){
+    $(this.find("a[data-nav='" + Session.get("page_id") + "']")).parent().addClass("active");
+}

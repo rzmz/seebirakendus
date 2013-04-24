@@ -17,18 +17,12 @@
     {{/if}}
     <div class="row">
       <div class="span12">
-        {{> page_controller}}
+        {{{display_page}}}
+          <div id="footer">
+            <p class="notReal">Rakenduses realiseeritud e-valimiste näide on realiseeritud tehnoloogiate praktiseerimise eesmärgil ning ei ole mõeldud reaalsete e-valimiste korraldamiseks. Kokkulangevused reaalse e-valimiste protsessiga on juhuslikud</p>
+        </div>
       </div>
     </div>
   </div>
+  {{page_end}}
 </body>
-
-<template name="page_controller">
-  {{{set_title}}}
-  <div id="pageMainContent">
-    {{{display_page}}}
-  </div>
-  <div id="footer">
-  <p class="notReal">Rakenduses realiseeritud e-valimiste näide on realiseeritud tehnoloogiate praktiseerimise eesmärgil ning ei ole mõeldud reaalsete e-valimiste korraldamiseks. Kokkulangevused reaalse e-valimiste protsessiga on juhuslikud</p>
-  </div>
-</template>

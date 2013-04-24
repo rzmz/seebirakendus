@@ -1,61 +1,25 @@
 //andmebaasist arrayde saamise funktsioonid
 getPersons = function() {
-    if (personsReady) {
-	    var cursor = Persons.find({candidateStatus: 2});
-	    if (cursor) {
-		var data = cursor.fetch();
-		return data;		
-		}
-    }
+    return Persons.find({candidateStatus: 2});
 };
 
-
 getRegions = function() {
-    if (regionsReady) {
-	    var cursor = Regions.find({});
-	    if (cursor) {
-		var data = cursor.fetch();
-		return data;		
-		}
-    }
+    return Regions.find({});
 };
 
 getParties = function() {
-    if (partiesReady) {
-	    var cursor = Parties.find({});
-	    if (cursor) {
-		var data = cursor.fetch();
-		return data;		
-		}    
-    }
+    return Parties.find({});
 };
 
 //utilityfunktsioonid
 getRegionNameById = function(regionId) {
-    var regions = getRegions();
-    var regionName = "...";
-    
-    for (var i = 0; i < regions.length; i++) {
-        if (regions[i].cid == regionId) {
-            regionName = regions[i].name;
-        }
-    }
-
-    return regionName;
+    var region = Regions.findOne({cid: regionId});
+    return (region && region.name) || "...";
 };
 
 getPartyNameById = function(partyId) {
-    var parties = getParties();
-    if (partyId == 0) return "Üksikkandidaat";
-        var partyName = "...";
-        
-        for (var i = 0; i < parties.length; i++) {
-            if (parties[i].cid == partyId) {
-                partyName = parties[i].name;
-        }
-    }
-
-    return partyName;
+    var party = Parties.findOne({cid: partyId});
+    return (party && party.name) || "üksikkandidaat";
 }
 
 getVotesByPartyId = function(partyId) {

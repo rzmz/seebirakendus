@@ -5,7 +5,12 @@ SeebirakendusRouter = Backbone.Router.extend({
     },
     
     main: function(url_path) {
+        
         var urlElements = url_path.split("?");
+
+        if(url_path !== ""){
+            Session.set("page_id", urlElements[0]);
+        }
              
         if (urlElements.length > 1) {
 
@@ -71,7 +76,6 @@ SeebirakendusRouter = Backbone.Router.extend({
         url_path = urlElements[0];
     };
 
-    Session.set('page_id', url_path);
     }
 });
 

@@ -1,20 +1,3 @@
 <template name="graafikud">
-  <!-- <div class="pull-right noprint">
-    <div class="btn-group" id="graphs_type">
-      <button class="btn" data-type="candidates">Kandidaadid</button>
-      <button class="btn" data-type="parties">Erakonnad</button>
-    </div>
-  </div> -->
-  <table class="dataTable">
-    <tbody>
-    {{#each parties}}
-      <tr>
-        <th scope="row">{{name}}</th>
-        <td>{{votes}}</td>
-      </tr>
-      {{graphHelper this parties.length}}
-	   {{/each}}
-     </tbody>
-  </table>
   <div id="graphHolder"></div>
 </template>
