@@ -8,10 +8,11 @@ Handlebars.registerHelper("set_page_title", function() {
 
 Handlebars.registerHelper("display_page", function(){
     var page_id = Session.get("page_id");
-    if(page_id && Template.hasOwnProperty(page_id)){
-        return Template[page_id]();
+    var rendered_page = "";
+    if(page_id && !Template.hasOwnProperty(page_id)){
+        page_id = "four_oh_four";
     }
-    return Template["four_oh_four"]();
+    return Template[page_id]();
 });
 
 Handlebars.registerHelper("page_end", function(){
@@ -42,7 +43,11 @@ Handlebars.registerHelper("alert-class", function() {
 // global collections to be used everywhere
 
 Handlebars.registerHelper("regions", function(){
-    return Regions.find();
+    return getRegions();
+});
+
+Handlebars.registerHelper("parties", function(){
+    return getParties();
 });
 
 Handlebars.registerHelper("candidates", function(){
@@ -51,8 +56,7 @@ Handlebars.registerHelper("candidates", function(){
     if(selectedFilterValue > 0 && !isNaN(selectedFilterValue)){
         filterOptions.regionId = selectedFilterValue;
     }
-
-    var persons = Persons.find(filterOptions);
+    var persons = getPersons(filterOptions);
     var result = [];
     
     if (persons) {

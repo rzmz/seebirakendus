@@ -1,14 +1,25 @@
 //andmebaasist arrayde saamise funktsioonid
-getPersons = function() {
-    return Persons.find({candidateStatus: 2});
+getPersons = function(options) {
+    var options_hash = options || {};
+    options_hash.candidateStatus = 2;
+    return Persons.find(options_hash);
 };
 
-getRegions = function() {
-    return Regions.find({});
+getRegions = function(options) {
+    var options = options || {};
+    return Regions.find(options);
 };
 
-getParties = function() {
-    return Parties.find({});
+getParties = function(options) {
+    var options = options || {};
+    var parties = Parties.find(options);
+    var results = [];
+    parties.forEach(function(party){
+        party.votes = getVotesByPartyId(party.cid);
+        party.mandates = getMandatesByPartyId(party.cid);
+        results.push(party);
+    });
+    return results;
 };
 
 //utilityfunktsioonid
@@ -23,43 +34,29 @@ getPartyNameById = function(partyId) {
 }
 
 getVotesByPartyId = function(partyId) {
-	var persons = getPersons(); 
-	var selectedFilterValue = Session.get("selected_region");
-	
-        var totalVotes = 0;
-        if(selectedFilterValue >= 0) {
-            for (var i = 0; i < persons.length; i++) {
-                    if (persons[i].partyId == partyId)
-                        if(persons[i].regionId == selectedFilterValue){
-                            totalVotes += persons[i].votes;
-                        }
-            }
-        } else {
-            for (var i = 0; i < persons.length; i++) {
-                    if (persons[i].partyId == partyId)
-                            totalVotes += persons[i].votes;
-            }
-        }
+	var selectedFilterValue = parseInt(Session.get("selected_region"));
+	var options = {partyId: partyId};    
+    var totalVotes = 0;
+    if(!isNaN(selectedFilterValue) && selectedFilterValue > 0) {
+        options.regionId = selectedFilterValue;
+    }    
+    var persons = getPersons(options);
+    persons.forEach(function(person){
+        totalVotes += person.votes;
+    })
+	return totalVotes;
+}
 
-	return totalVotes; 
+getCandidatesByPartyId = function(partyId) {
+	var persons = getPersons({partyId: partyId});
+    return persons.count();
 }
-getCandidatesByPartyId = function(party) {
-	var sumCandidates = 0;
-	var persons = getPersons();
-	for (var i = 0 ; i < persons.length ; i++) {
-		if(persons[i].partyId == party)	{
-			sumCandidates++;		
-		}
-	}
-	return sumCandidates;
-}
+
 //TODO - PLACEHOLDER!
 getMandatesByPartyId = function(partyId) {
-
-	var votes = getVotesByPartyId(partyId);
-	var mandates = Math.floor(votes / 400000 * 100 * 2.2); //wat
-	return mandates;
-
+    var votes = getVotesByPartyId(partyId);
+    var mandates = Math.floor(votes / 400000 * 100 * 2.2); //wat
+    return mandates;
 }
 
 //tagastab "abielus/vallaline" state väärtusest lähtuvalt
