@@ -6,15 +6,15 @@ body {
 	height: 100%; 
 	margin: 0; 
 	padding: 0;
-  padding-top: 40px;
+    padding-top: 20px;
 }
 
 #map_canvas {
   position: absolute; 
-  top:200px;
-  left:5%;
-  width:90%; 
-  height:60%; 
+  top:180px;
+  left:15%;
+  width:70%; 
+  height:70%; 
 }
 
 #errors {

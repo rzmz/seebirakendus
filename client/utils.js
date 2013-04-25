@@ -79,6 +79,29 @@ getVotesByPartyId = function(partyId) {
 
 	return totalVotes; 
 }
+getLeaderIdInRegion = function(regionId) {
+    var parties = getParties();
+    var persons = getPersons(); 
+    
+    var maxVotes = 0;
+    var maxParty = 1;
+    
+    for (var party = 1; party < parties.length ; party++) {
+        var totalVotes = 0;
+        for (var i = 0; i < persons.length; i++) {
+            if (persons[i].partyId == party) {
+                if(persons[i].regionId == regionId){
+                    totalVotes += persons[i].votes;
+                }
+            }
+        }
+        if(totalVotes > maxVotes) {
+            maxVotes = totalVotes;
+            maxParty = party;
+        }
+    }
+    return maxParty;
+}
 getCandidatesByPartyId = function(party) {
 	var sumCandidates = 0;
 	var persons = getPersons();
@@ -147,8 +170,4 @@ clearError = function($element){
 clearAllErrors = function(){
     $('#alert-messages').addClass('disabled');
 }
-
-
-
-
 
