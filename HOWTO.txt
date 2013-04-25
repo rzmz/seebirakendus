@@ -21,9 +21,7 @@ $ (in another tab/window) sh reset_local_data.sh
     http://localhost:3000
     
     
-# Application working on UNIX systems!!
+# Application working on UNIX and Win7 systems
+
 # Information about Meteor available at http://meteor.com/
-
-
-##### WINDOWS IS NO LONGER SUPPORTED!
 # For information about Meteor on Windows go to http://win.meteor.com/
