@@ -192,8 +192,12 @@ initializeMap = function() {
     leaderDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(leaderDiv);
     
+    var PercentLabels = [];
+    
     for(var i = regionPolys.length ; i != 0 ; i-- ){
-        var leaderInRegion = getLeaderIdInRegion(i);
+        var leaderStuff = getLeaderIdInRegion(i);
+        leaderInRegion = leaderStuff[0];
+        votesPercentage = ((leaderStuff[1]/getVotesByRegionId(i))*100).toFixed(1);
         var regionPoly = new google.maps.Polygon({
             paths: regionPolys[i-1],
             strokeColor: partyColors[leaderInRegion-1],
@@ -204,21 +208,21 @@ initializeMap = function() {
             id: i,
             map: map
         });
-        console.log("In region " + regionLabels[i-1] + " the leader is " + getPartyNameById(leaderInRegion));
+        console.log("In region " + regionLabels[i-1] + " the leader is " + getPartyNameById(leaderInRegion) + ", with " + votesPercentage + " %");
         
 
         google.maps.event.addListener(regionPoly, "mouseover", function (event) { 
             this.setOptions({ 
-                fillColor: partyColors[getLeaderIdInRegion(this.id)-1], 
+                fillColor: partyColors[getLeaderIdInRegion(this.id)[0]-1], 
                 fillOpacity: 0.8
             });
-            leader = new Leader(leaderDiv, map, getLeaderIdInRegion(this.id), this.id);
+            leader = new Leader(leaderDiv, map, getLeaderIdInRegion(this.id)[0], this.id, getLeaderIdInRegion(this.id)[1]);
         });
         google.maps.event.addListener(regionPoly, "mouseout", function(event) { 
             this.setOptions({ 
                 fillOpacity: 0.2 
             }); 
-            leader = new Leader(leaderDiv, map, -1, -1);
+            leader = new Leader(leaderDiv, map, -1, -1, -1);
         });
     }
     
@@ -291,7 +295,7 @@ function Legend(controlDiv, map, partyColors) {
     controlUI.appendChild(controlText);
 }
 
-function Leader(leaderDiv, map, leaderID, regionID) {
+function Leader(leaderDiv, map, leaderID, regionID, leadAmount) {
     // Set CSS styles for the DIV containing the legend
     // Setting padding to 5 px will offset the control
     // from the edge of the map
@@ -317,10 +321,11 @@ function Leader(leaderDiv, map, leaderID, regionID) {
     leaderText.style.paddingRight = '4px';
 
     var showText = "";
-    if (leaderID > -1 && regionID > -1) {
+    if (leaderID > -1 && regionID > -1 && leadAmount > -1) {
         //showText = '<small>';
         showText += "Piirkond: " + getRegionNameById(regionID) + "<br />";
-        showText += "Liider: " + getPartyNameById(leaderID);
+        showText += "Liider: " + getPartyNameById(leaderID) + "<br />";
+        showText += "Hetketulemus: " + ((leadAmount/getVotesByRegionId(regionID))*100).toFixed(1) + " %";
         //showText += '</small>'
     }
     leaderText.innerHTML = showText;

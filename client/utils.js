@@ -12,11 +12,11 @@ getPersons = function() {
 
 getRegions = function() {
     if (regionsReady) {
-	    var cursor = Regions.find({});
-	    if (cursor) {
-		var data = cursor.fetch();
-		return data;		
-		}
+	      var cursor = Regions.find({});
+	      if (cursor) {
+		        var data = cursor.fetch();
+		        return data;		
+	      }
     }
 };
 
@@ -79,6 +79,20 @@ getVotesByPartyId = function(partyId) {
 
 	return totalVotes; 
 }
+
+getVotesByRegionId = function(regionNr) {
+	var persons = getPersons(); 
+	var region = regionNr;
+	
+  var totalVotes = 0;
+  for (var i = 0; i < persons.length; i++) {
+    if (persons[i].regionId == region)
+      totalVotes += persons[i].votes;
+  }
+
+	return totalVotes; 
+}
+
 getLeaderIdInRegion = function(regionId) {
     var parties = getParties();
     var persons = getPersons(); 
@@ -100,7 +114,7 @@ getLeaderIdInRegion = function(regionId) {
             maxParty = party;
         }
     }
-    return maxParty;
+    return [maxParty, maxVotes];
 }
 getCandidatesByPartyId = function(party) {
 	var sumCandidates = 0;
