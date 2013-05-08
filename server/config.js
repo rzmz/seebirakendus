@@ -25,8 +25,8 @@ if(Meteor.absoluteUrl().indexOf("localhost") > -1) {
     };
     facebook_credentials = {
         service: "facebook",
-        appId: "129225410590136",
-        secret: "1641a33277dc3e80b8383973d0dc945c"
+        appId: "549549415067367",
+        secret: "41290445c7cf6a565e8d630b4a2d9590"
     };
 } else if(Meteor.absoluteUrl().indexOf("seebirakendus.meteor.com") > -1) {
     // seebirakendus.meteor.com
