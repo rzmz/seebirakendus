@@ -17,10 +17,11 @@
               <li><a href="#">login sisse...</a></li>
             {{else}}
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logi sisse <b class="caret"></b></a>
+                <a class="dropdown-toggle" id="show_login_dropdown" data-toggle="dropdown" href="#">Logi sisse <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a class="accounts" href="#" data-action="github">Githubiga</a></li>
-                  <li><a class="accounts" href="#" data-action="facebook">Facebookiga</a></li>
+                  <li><a class="accounts" id="login_github" href="#" data-action="github">Githubiga</a></li>
+                  <li><a class="accounts" id="login_fb" href="#" data-action="facebook">Facebookiga</a></li>
+                  <!--<li><a class="accounts" id="login_fb_test" href="https://graph.facebook.com/549549415067367/accounts/test-users?access_token=549549415067367|W1vOSZe65mLAgM6ITgNtJauh2AY">FB_testuser_data</a></li>-->
                   <!-- <li><a class="navigate" href="/login" data-action="oldschool">Vanakool</a></li> -->
                 </ul>
               </li>

@@ -1,2 +1,5 @@
+######### Localhost Facebook user:
+# username:
 mpvhhmj_zamorestein_1367993722@tfbnw.net
+# password:
 1234567890
