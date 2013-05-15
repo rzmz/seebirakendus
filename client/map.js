@@ -7,9 +7,8 @@ loadMapScript = function() {
     } else {
         script.src = "http://maps.googleapis.com/maps/api/js?sensor=true&callback=initializeMap";
     }
-    
+    $(document.getElementById('mapApi')).remove();
     document.body.appendChild(script);
-    $(document.getElementById('mapApi')).nextAll().remove();
 }
 
 initializeMap = function() {
