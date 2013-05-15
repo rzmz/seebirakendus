@@ -1,12 +1,15 @@
 loadMapScript = function() {
     var script = document.createElement("script");
     script.type = "text/javascript";
+    script.id = "mapApi";
     if (Meteor.absoluteUrl().indexOf("localhost") === -1) {
-        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBa-Tfefz_ZhLbBr9cwALMNFJ3e6rjdpO4&sensor=true&callback=initializeMap";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyB7_vJLiia3kn2qcRAX4wrqadx8SfuKSMM&sensor=true&callback=initializeMap";
     } else {
         script.src = "http://maps.googleapis.com/maps/api/js?sensor=true&callback=initializeMap";
     }
+    
     document.body.appendChild(script);
+    $(document.getElementById('mapApi')).nextAll().remove();
 }
 
 initializeMap = function() {
